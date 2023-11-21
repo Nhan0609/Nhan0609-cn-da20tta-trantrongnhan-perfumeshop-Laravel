@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\FrontendController;
 /*
 |--------------------------------------------------------------------------
@@ -24,15 +25,28 @@ use App\Http\Controllers\Frontend\FrontendController;
 //Frontend
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('category',[FrontendController::class, 'category']);
-Route::get('view-category/{slug}', [FrontendController::class, 'viewcategory']);
+Route::get('category/{slug}', [FrontendController::class, 'viewcategory']);
 Route::get('category/{cate_slug}/{prod_slug}',[FrontendController::class, 'productview']);
+
 // Auth
 Auth::routes();
-
 Route::get('/home', [FrontendController::class, 'index'])->name('/login');
 
+//Thêm vào giỏ hàng
+Route::post('add-to-cart',[CartController::class, 'addProduct']);
+//Xóa khỏi giỏ hàng
+Route::post('delete-cart-item', [CartController::class, 'deleteproduct']);
+//Cập nhật số lượng và giá trong giỏ hàng
+Route::post('update-cart', [CartController::class, 'updatecart']);
+//Giỏ hàng
+Route::middleware(['auth'])-> group(function(){
+   Route::get('cart',[CartController::class, 'viewcart']);
+});
+
 Route::middleware(['auth', 'isAdmin'])->group(function () {
+    //Trang chủ
     Route::get('/dashboard', [FrontendController::class, 'index']);
+
     //Category
     Route::get('categories', [CategoryController::class, 'index']);
     // Thêm 

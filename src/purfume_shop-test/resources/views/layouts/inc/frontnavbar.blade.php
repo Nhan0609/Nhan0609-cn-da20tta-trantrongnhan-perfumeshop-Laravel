@@ -1,13 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" href="{{ url('/') }}">Perfume Shop</a>
+    <a class="navbar-brand" href="{{ url('/categories') }}">Perfume Shop</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ms-auto">
-        <a class="nav-link active" aria-current="page" href="{{ url('/home') }}">Home</a>
+        <a class="nav-link active" aria-current="page" href="{{ url('/home') }}">Trang Chủ</a>
         <a class="nav-link" href="{{ url('category' )}}">Danh Mục</a>
+        <a class="nav-link" href="{{ url('cart' )}}"><i style="font-size: 30px;" class="fa fa-shopping-cart"></i></a>
         
 
         
@@ -16,17 +17,17 @@
                 @auth
                 <a href="{{ route('logout') }}" class="nav-link underline" 
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Đăng Xuất') }}
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
               
                 @else
-                    <a href="{{ route('login') }}" class="nav-link underline" >Log in</a>
+                    <a href="{{ route('login') }}" class="nav-link underline" >Đăng Nhập</a>
 
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="nav-link underline">Register</a>
+                        <a href="{{ route('register') }}" class="nav-link underline">Đăng Ký</a>
                     @endif
                 @endauth
             <!-- </div> -->
