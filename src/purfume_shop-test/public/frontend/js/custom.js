@@ -25,7 +25,25 @@ $(document).ready(function () {
             });
     
         });
-    
+        
+    //Thêm sản phẩm vào danh sách yêu thích
+        $('.addToWishlist').click(function (e){
+            e.preventDefault();
+            var product_id = $(this).closest('.product_data').find('.prod_id').val();
+
+            $.ajax({
+                method: "POST",
+                url: "/add-to-wishlist",
+                data: {
+                    'product_id': product_id,
+                },
+                success: function (response){
+                    swal(response.status);
+                }
+            });
+        });
+
+
         // Tăng số lượng sản phẩm
         $('.increment-btn').click(function (e){
             e.preventDefault();
@@ -59,8 +77,8 @@ $(document).ready(function () {
                 $(this).closest('.product_data').find('.qty-input').val(value);
             }
         });
+
         //Xóa Sản Phẩm Khỏi Giỏ Hàng
-    
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -100,6 +118,24 @@ $(document).ready(function () {
             });
         });
         
+        //Xóa sản phẩm khỏi danh sách yêu thích
+        $('.remove-wishlist-item').click(function (e){
+            e.preventDefault();
+            var prod_id = $(this).closest('.product_data').find('.prod_id').val();
+
+            $.ajax({
+                method: "POST",
+                url: "delete-wishlist-item",
+                data: {
+                    'prod_id': prod_id,
+                },
+                success: function(response){
+                    window.location.reload();
+                    swal("", response.status, "success");
+                }
+            });
+        });
+
         // Cập nhật số lượng và giá trong giỏ hàng
         $('.changeQuantity').click(function (e) {
             e.preventDefault();

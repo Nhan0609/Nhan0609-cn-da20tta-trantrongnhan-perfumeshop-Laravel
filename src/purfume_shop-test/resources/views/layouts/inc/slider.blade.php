@@ -9,7 +9,7 @@
       <img src="{{asset('assets/images/slide1.jpg')}}" class="d-block " alt="...">
     </div>
     <div class="carousel-item">
-      <img src="{{asset('assets/images/slide2.jpg')}}" class="d-block " alt="...">
+      <img src="{{asset('assets/images/slide5.webp')}}" class="d-block " alt="...">
     </div>
     <div class="carousel-item">
       <img src="{{asset('assets/images/slide4.png')}}" class="d-block " alt="...">

@@ -4,9 +4,15 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\UserController;
+use App\Http\Controllers\Frontend\WishlistController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,13 +44,29 @@ Route::post('add-to-cart',[CartController::class, 'addProduct']);
 Route::post('delete-cart-item', [CartController::class, 'deleteproduct']);
 //Cập nhật số lượng và giá trong giỏ hàng
 Route::post('update-cart', [CartController::class, 'updatecart']);
+//Thêm sản phẩm vào danh sách yêu thích
+Route::post('add-to-wishlist', [WishlistController::class, 'add']);
+//Xóa sản phẩm khỏi danh sách yêu thích
+Route::post('delete-wishlist-item', [WishlistController::class, 'deleteitem']);
+
+
 //Giỏ hàng
 Route::middleware(['auth'])-> group(function(){
-   Route::get('cart',[CartController::class, 'viewcart']);
+   Route::get('cart', [CartController::class, 'viewcart']);
+//Thanh toán
+   Route::get('checkout', [CheckoutController::class, 'index']);
+//Đặt hàng
+   Route::post('place-order', [CheckoutController::class, 'placeorder']);
+//Xem đơn hàng
+   Route::get('my-orders', [UserController::class, 'index']);
+//Xem chi tiết đơn hàng
+   Route::get('view-order/{id}', [UserController::class, 'view']);
+//Danh sách yêu thích
+   Route::get('wishlist', [WishlistController::class, 'index']);
 });
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
-    //Trang chủ
+    //Trang chủ Admin
     Route::get('/dashboard', [FrontendController::class, 'index']);
 
     //Category
@@ -68,5 +90,18 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::put('upload-product/{id}', [ProductController::class, 'upload']);
     //Xóa
     Route::get('delete-product/{id}', [ProductController::class, 'destroy']);
+
+    //Đơn đặt hàng
+    Route::get('orders', [OrderController::class, 'index']);
+    //Xem chi tiết đơn đặt hàng
+    Route::get('admin/view-order/{id}', [OrderController::class, 'view']);
+    //Cập nhật trạng thái đơn hàng
+    Route::put('update-order/{id}', [OrderController::class, 'updateorder']);
+    //Xem lịch sử đặt hàng
+    Route::get('order-history', [OrderController::class, 'orderhistory']);
+    //Hiển thị thông tin User
+    Route::get('users', [DashboardController::class, 'users']);
+    //Xem thông tin User
+    Route::get('view-users/{id}', [DashboardController::class, 'viewuser']);
 });
 

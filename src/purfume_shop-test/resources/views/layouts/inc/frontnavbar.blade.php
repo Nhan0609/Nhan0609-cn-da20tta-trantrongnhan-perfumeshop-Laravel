@@ -8,10 +8,30 @@
       <div class="navbar-nav ms-auto">
         <a class="nav-link active" aria-current="page" href="{{ url('/home') }}">Trang Chủ</a>
         <a class="nav-link" href="{{ url('category' )}}">Danh Mục</a>
+        <a class="nav-link" href="{{ url('my-orders' )}}">Đơn Hàng</a>
         <a class="nav-link" href="{{ url('cart' )}}"><i style="font-size: 30px;" class="fa fa-shopping-cart"></i></a>
-        
+        <a class="nav-link" href="{{ url('wishlist' )}}"><i style="font-size: 30px;" class="fa fa-heart"></i></a>
 
-        
+        {{-- @guest
+            @if (Route::has('login'))
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('login') }}"> {{__('Đăng Nhập')}} </a>
+                </li>
+            @endif
+
+            @if (Route::has('register'))
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('register') }}"> {{__('Đăng Ký')}} </a>
+                </li>
+            @endif
+
+            @else
+                <li>
+                  
+                </li>
+
+        @endguest --}}
+
         @if (Route::has('login'))
             <!-- <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block"> -->
                 @auth

@@ -14,6 +14,7 @@
                     <div class="owl-carousel featured-carousel owl-theme">
                         @foreach($featured_products as $prod)
                             <div class="item">
+                                {{-- <a href="{{ url('products/'.$prod->slug)}}"> --}}
                                 <div class="card">
                                     <img src="{{ asset('assets/uploads/products/'.$prod->image) }}" alt="Ảnh Sản Phẩm">
                                     <div class="card-body">
@@ -22,6 +23,7 @@
                                         <span class="float-end"> <s> {{ $prod->original_price }} </s> </span>
                                     </div>
                                 </div>
+                                {{-- </a> --}}
                             </div> 
                         @endforeach
                     </div> 

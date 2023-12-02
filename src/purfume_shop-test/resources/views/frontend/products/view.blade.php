@@ -50,7 +50,6 @@
                         <label class="bagde bg-success">Còn Hàng</label>
                     @else
                         <label class="bagde bg-danger">Hết Hàng</label>
-                    @endelse
                     @endif
                     <div class="row mt-2">
                         <div class="col-md-3">
@@ -64,8 +63,15 @@
                         </div>
                         <div class="col-md-10">
                             <br>
+
+                        @if($products->qty > 0)
+                            
                             <button type="button" class="btn btn-success me-3 addToCartBtn float-start">Thêm vào Giỏ Hàng <i class="fa fa-shopping-cart"></i></button>
-                            <button type="button" class="btn btn-primary me-3 float-start">Thêm Vào Yêu Thích <i class="fa fa-heart"></i></button>
+                        
+                        @endif
+
+                            
+                            <button type="button" class="btn btn-primary me-3 addToWishlist float-start">Thêm Vào Yêu Thích <i class="fa fa-heart"></i></button>
                         </div>
                     </div>
                     </div>
