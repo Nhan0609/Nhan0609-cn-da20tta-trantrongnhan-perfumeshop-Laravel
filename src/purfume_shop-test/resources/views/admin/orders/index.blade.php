@@ -32,7 +32,7 @@
                                         <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
                                         <td>{{ $item->tracking_no }}</td>
                                         <td>{{ $item->total_price }}</td>
-                                        <td>{{ $item->status == '0' ? 'Chưa Xử Lý':'Đã Xử Lý'}} </td>
+                                        <td>{{ $item->status == '0' ? 'Chưa Xử Lý':'Đang Giao Hàng'}} </td>
                                         <td>
                                             <a href="{{ url('admin/view-order/'.$item->id)}}" class="btn btn-primary">Xem</a>
                                         </td>

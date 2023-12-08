@@ -70,7 +70,7 @@
                         </div>
 
                         <div class="col-md-2 my-auto">
-                            <button class="btn btn-danger delete-cart-item"> <i class="fa fa-trash"></i> Xóa Sản Phẩm Khỏi Giỏ Hàng</button>
+                            <button class="btn btn-danger delete-cart-item"> <i class="fa fa-trash"></i> </button>
                         </div>
                     </div>
 

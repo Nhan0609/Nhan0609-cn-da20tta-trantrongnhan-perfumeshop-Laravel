@@ -69,7 +69,7 @@
                         </div>
 
                         <div class="col-md-2 my-auto mt-3">
-                            <button class="btn btn-danger remove-wishlist-item "> <i class="fa fa-trash"></i> Xóa Sản Phẩm </button>
+                            <button class="btn btn-danger remove-wishlist-item "> <i class="fa fa-trash"></i> </button>
                         </div>
                     </div>
 
@@ -78,7 +78,11 @@
            
                 
                 @else
-                    <h4> Không Có Sản Phẩm Nào Trong Danh Sách Yêu Thích </h4>
+                    <div class="card-body text-center">
+                        <h2 class="card-body text-center"> Không Có Sản Phẩm Nào Trong Danh Sách Yêu Thích </h2>
+                        <a href="{{ url('category') }}" class="btn btn-outline-primary float-end"> Mua Sắm Ngay</a>
+                    </div>  
+                    
                 @endif
             </div>  
         </div>

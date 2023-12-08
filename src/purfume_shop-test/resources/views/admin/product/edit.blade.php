@@ -22,18 +22,18 @@
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label for="">Slug</label>
+                        <label for="">Từ Khóa</label>
                         <input type="text" class="form-control" value="{{ $products->slug}}" name="slug">
                     </div>
 
                     <div class="col-md-12 mb-3">
-                        <label for=""> Small Description</label>
-                        <textarea name="small_description" rows="3" class="form-control">{{ $products->small_description}}</textarea>
+                        <label for=""> Mô Tả</label>
+                        <textarea name="small_description"  rows="3" class="form-control">{{ $products->small_description}}</textarea>
                     </div>
 
                     <div class="col-md-12 mb-3">
-                        <label for=""> Description</label>
-                        <textarea name="description" rows="3" class="form-control">{{ $products->description}}</textarea>
+                        <label for=""> Mô Tả Chi Tiết</label>
+                        <textarea name="description" id="content" rows="3" class="form-control">{{ $products->description}}</textarea>
                     </div>
 
                     <div class="col-md-6 mb-3">
@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label for="">Thuế &emsp;</label>
+                        <label for=""> &emsp;</label>
                         <input type="number" value="{{ $products->tax}}" class="form-control" name="tax">
                     </div>
 
@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label for="">Status</label>
+                        <label for="">Ẩn</label>
                         <input type="checkbox" {{ $products->status == "1" ? 'checked' : '' }} name="status">
                     </div>
 
@@ -66,7 +66,7 @@
                         <input type="checkbox" {{ $products->trending == "1" ? 'checked' : '' }} name="trending">
                     </div>
                     
-                    <div class="col-md-12 mb-3">
+                    {{-- <div class="col-md-12 mb-3">
                         <label>Meta Title</label>
                         <input type="text" value="{{ $products->meta_title }}" rows="3" class="form-control" name="meta_title">
                     </div>
@@ -79,7 +79,7 @@
                     <div class="col-md-12 mb-3">
                         <label for="">Meta Description</label>
                         <textarea name="meta_description" rows="3" class="form-control">{{ $products->meta_description }}</textarea>
-                    </div>
+                    </div> --}}
 
                     @if($products->image) 
                         <img src="{{ asset('assets/uploads/products/'.$products->image) }}" alt="" >
@@ -97,3 +97,9 @@
         </div>
     </div>
 @endsection
+{{-- @section('custom-js')
+<script src="http://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+     <script>
+         CKEDITOR.replace('description');
+      </script>
+@endsection --}}

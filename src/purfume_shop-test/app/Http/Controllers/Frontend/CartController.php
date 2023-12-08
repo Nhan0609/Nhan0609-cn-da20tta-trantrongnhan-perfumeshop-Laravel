@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -90,5 +91,19 @@ class CartController extends Controller
         {
             return response()->json(['status'=> "Vui Lòng Đăng nhập Để Tiếp Tục"]);
         }
+    }
+
+    //Hiển thị số lượng sản phẩm có trong giỏ hàng
+    public function cartcount()
+    {
+        $cartcount = Cart::where('user_id', Auth::id())->count();
+        return response()->json(['count'=> $cartcount]);
+    }
+
+    //Hiển thị số lượng sản phẩm có trong danh sách yêu thích
+    public function wishlistcount()
+    {
+        $wishcount = Wishlist::where('user_id', Auth::id())->count();
+        return response()->json(['count'=> $wishcount]);
     }
 }

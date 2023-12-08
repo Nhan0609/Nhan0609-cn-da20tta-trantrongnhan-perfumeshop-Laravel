@@ -54,7 +54,7 @@ class CheckoutController extends Controller
         }
         $order->total_price = $total;
 //Kết thúc tính tổng tiền sau khi đặt hàng
-        $order->tracking_no = 'trongnhan'.rand(1111,9999);
+        $order->tracking_no = 'user'.rand(1111,9999);
         $order->save();
 
         $cartitems = Cart::where('user_id', Auth::id())->get();

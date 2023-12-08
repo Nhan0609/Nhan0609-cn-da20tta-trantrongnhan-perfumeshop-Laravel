@@ -73,7 +73,7 @@
                                         @method('PUT')
                                         <select class="form-select" name="order_status" >
                                             <option {{ $orders->status == '0'? 'selected':'' }} value="0"> Chưa Xử Lý </option>
-                                            <option {{ $orders->status == '1'? 'selected':'' }} value="1"> Đã Xử Lý </option>
+                                            <option {{ $orders->status == '1'? 'selected':'' }} value="1"> Đang Giao Hàng </option>
                                         </select>
                                         <button type="submit" class="btn btn-primary float-end mt-3"> Cập Nhật </button>
                                     </form>

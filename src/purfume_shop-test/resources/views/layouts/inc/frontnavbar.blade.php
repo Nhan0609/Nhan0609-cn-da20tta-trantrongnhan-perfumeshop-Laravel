@@ -6,11 +6,43 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ms-auto">
+        
+        <form action="{{url('timkiem')}}" method="POST">
+          @csrf
+          <div class="nav-link active">
+            <input type="text" name="keywords_submit" id="" placeholder="Tìm Kiếm" value="{{ $keywords ?? '' }}" required>
+            <input type="submit" name="search_items" id="" class="btn btn-primary btn-sm" value="Tìm Kiếm">
+          </div>
+        </form>
+        
+
         <a class="nav-link active" aria-current="page" href="{{ url('/home') }}">Trang Chủ</a>
-        <a class="nav-link" href="{{ url('category' )}}">Danh Mục</a>
+
+        <a class="nav-link" href="{{ url('category')}}">Danh Mục</a>
+        {{-- <ul class="navbar-nav">
+          <li> --}}
+              {{-- <a class="nav-link" href="{{ url('category')}}">Danh Mục</a> --}}
+              {{-- <ul>
+                  <li><a href="#">Link 1</a></li>
+                  <li><a href="#">Link 2</a></li>
+                  <li><a href="#">Link 3</a></li>
+              </ul>
+          </li>
+      </ul> --}}
+      
+      
+
         <a class="nav-link" href="{{ url('my-orders' )}}">Đơn Hàng</a>
-        <a class="nav-link" href="{{ url('cart' )}}"><i style="font-size: 30px;" class="fa fa-shopping-cart"></i></a>
-        <a class="nav-link" href="{{ url('wishlist' )}}"><i style="font-size: 30px;" class="fa fa-heart"></i></a>
+
+        <a class="nav-link" href="{{ url('cart' )}}">
+          <i style="font-size: 30px;" class="fa fa-shopping-cart"></i>
+          <span class="badge badge-pill bg-primary cart-count">0</span>
+        </a>
+
+        <a class="nav-link" href="{{ url('wishlist' )}}">
+          <i style="font-size: 30px;" class="fa fa-heart"></i>
+          <span class="badge badge-pill bg-success wishlist-count">0</span>
+        </a>
 
         {{-- @guest
             @if (Route::has('login'))
@@ -35,6 +67,7 @@
         @if (Route::has('login'))
             <!-- <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block"> -->
                 @auth
+                <a href="#" class="nav-link active">Xin Chào, {{ Auth::user()->name }}</a>
                 <a href="{{ route('logout') }}" class="nav-link underline" 
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('Đăng Xuất') }}

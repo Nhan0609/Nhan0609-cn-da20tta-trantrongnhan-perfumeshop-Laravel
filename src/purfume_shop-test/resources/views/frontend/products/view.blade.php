@@ -7,6 +7,7 @@
     <div class="py-3 mb-4 shadow-sm bg-warning border-top">
         <div class="container">
             <h6 class="mb-0">
+                <a href="{{url('home')}}">Trang Chủ</a> / 
 
                 <a href="{{ url('category') }}">
                      Bộ Sưu Tập
@@ -43,11 +44,20 @@
                         <label class="me-3">Giá Gốc: <s> {{ $products->original_price }}</s></label>
                         <label class="fw-bold">Giảm Còn: {{ $products->selling_price }}</label>
                         <p class="mt-3">
+                            <div class="col-md-5">
                             {!! $products->small_description !!}
+                            </div>
+
+                            <div class="col-md-5 mt-3">
+                                Có Sẵn <b>{{ $products->qty }}</b> Sản Phẩm
+                            </div>
                         </p>
+
+                        
+
                         <hr>
                     @if($products->qty > 0)
-                        <label class="bagde bg-success">Còn Hàng</label>
+                        <label class="bagde bg-success text-white">Còn Hàng</label>
                     @else
                         <label class="bagde bg-danger">Hết Hàng</label>
                     @endif
@@ -75,8 +85,15 @@
                         </div>
                     </div>
                     </div>
+                    
+                    <div class="col-md-4">
+                       <h3> Chi Tiết Sản Phẩm</h3>
+                       
+                        {!! $products->description !!}
+                    </div>
                 </div>
             </div>
+            
         </div>
     </div>
 @endsection

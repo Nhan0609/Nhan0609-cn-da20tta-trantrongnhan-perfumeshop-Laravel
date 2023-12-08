@@ -16,6 +16,7 @@
    
     <link href="{{ asset('admin/css/material-dashboard.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/custom.css') }}" rel="stylesheet">
+    <script src="http://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
     
 </head>
 <body>
@@ -37,8 +38,17 @@
 <script src="{{ asset('admin/js/popper.min.js') }}" defer></script>
 <script src="{{ asset('admin/js/bootstrap-material-design.min.js') }}" defer></script>
 <script src="{{ asset('admin/js/perfect-scrollbar.jquery.min.js') }}" defer></script>
-    
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{{-- ckediter --}}
+<script src="{{ asset('/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('/ckeditor/plugins/ckfinder/ckfinder.js') }}"></script>
+<script>
+    CKEDITOR.replace('content', {
+        filebrowserUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
+    });
+</script>
+
  
 @if(session('status'))
     <script>
@@ -47,6 +57,6 @@
   @endif
 
 @yield('scripts')
-  
+@yield('custom-js')
 </body>
 </html>

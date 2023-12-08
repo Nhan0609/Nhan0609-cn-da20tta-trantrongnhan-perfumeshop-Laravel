@@ -33,9 +33,21 @@ Route::get('/', [FrontendController::class, 'index']);
 Route::get('category',[FrontendController::class, 'category']);
 Route::get('category/{slug}', [FrontendController::class, 'viewcategory']);
 Route::get('category/{cate_slug}/{prod_slug}',[FrontendController::class, 'productview']);
+//Tìm kiếm sản phẩm
+Route::post('timkiem', [FrontendController::class, 'search']);
+//Hiển thị sản phẩm có view cao
+
+
+// Route::get('info', []);
 
 // Auth
 Auth::routes();
+//Hiển thị số lượng sản phẩm có trong giỏ hàng
+Route::get('load-cart-data', [CartController::class, 'cartcount']);
+//Hiển thị số lượng sản phẩm có trong danh sách yêu thích
+Route::get('load-wishlist-count', [CartController::class, 'wishlistcount']);
+
+//Home
 Route::get('/home', [FrontendController::class, 'index'])->name('/login');
 
 //Thêm vào giỏ hàng
@@ -68,7 +80,6 @@ Route::middleware(['auth'])-> group(function(){
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     //Trang chủ Admin
     Route::get('/dashboard', [FrontendController::class, 'index']);
-
     //Category
     Route::get('categories', [CategoryController::class, 'index']);
     // Thêm 

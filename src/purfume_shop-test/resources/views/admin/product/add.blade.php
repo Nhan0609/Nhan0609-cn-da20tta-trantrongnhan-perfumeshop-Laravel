@@ -24,18 +24,21 @@
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label for="">Slug</label>
+                        <label for="">Từ Khóa</label>
                         <input type="text" class="form-control" name="slug">
                     </div>
 
                     <div class="col-md-12 mb-3">
-                        <label for=""> Small Description</label>
+                        <label for=""> Mô Tả</label>
                         <textarea name="small_description" rows="3" class="form-control"></textarea>
+                        {{-- <textarea class="form-control" id="small_description" name="small_description" rows="10" cols="80"></textarea> --}}
                     </div>
 
                     <div class="col-md-12 mb-3">
-                        <label for=""> Description</label>
-                        <textarea name="description" rows="3" class="form-control"></textarea>
+                        <label for=""> Mô Tả Chi Tiết</label>
+                        <textarea name="description" id="content" rows="3" class="form-control"></textarea>
+                        {{-- <textarea class="form-control" id="description" name="small_description" rows="10" cols="80"></textarea> --}}
+                        
                     </div>
 
                     <div class="col-md-6 mb-3">
@@ -49,7 +52,7 @@
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label for="">Thuế &emsp;</label>
+                        <label for=""> &emsp;</label>
                         <input type="number" class="form-control" name="tax">
                     </div>
 
@@ -59,7 +62,7 @@
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label for="">Status</label>
+                        <label for="">Ẩn</label>
                         <input type="checkbox" name="status">
                     </div>
 
@@ -68,7 +71,7 @@
                         <input type="checkbox" name="trending">
                     </div>
                     
-                    <div class="col-md-12 mb-3">
+                    {{-- <div class="col-md-12 mb-3">
                         <label>Meta Title</label>
                         <input type="text" rows="3" class="form-control" name="meta_title">
                     </div>
@@ -81,16 +84,23 @@
                     <div class="col-md-12 mb-3">
                         <label for="">Meta Description</label>
                         <textarea name="meta_description" rows="3" class="form-control"></textarea>
-                    </div>
+                    </div> --}}
                     <div class="col-md-12">
                         <input type="file" name="image" class="form-control">
                     </div>
 
                     <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary"> Submit </button>
+                        <button type="submit" class="btn btn-primary"> Thêm </button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 @endsection
+{{-- @section('custom-js')
+<script src="http://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+     <script>
+        //  CKEDITOR.replace('small_description');
+         CKEDITOR.replace('description');
+      </script>
+@endsection --}}

@@ -7,14 +7,39 @@
 @section('content')
     @include('layouts.inc.slider')
     
-        <div class="py-5">
-            <div class="container">
-                <div class="row">
-                    <h2>Sản Phẩm Hot</h2>
-                    <div class="owl-carousel featured-carousel owl-theme">
-                        @foreach($featured_products as $prod)
-                            <div class="item">
-                                {{-- <a href="{{ url('products/'.$prod->slug)}}"> --}}
+    <div class="py-5">
+        <div class="container">
+            <div class="row">
+                <h2>Danh Mục Trending</h2>
+                <div class="owl-carousel featured-carousel owl-theme">
+                    @foreach($trending_category as $tcategory)
+                        <div class="item">
+                            <a href="{{ url('category/'.$tcategory->slug)}}">
+                                <div class="card">
+                                    <img src="{{ asset('assets/uploads/category/'.$tcategory->image) }}" alt="Ảnh Danh Mục Trending">
+                                    <div class="card-body">
+                                        <h5>{{ $tcategory->name }}</h5>
+                                        <p>
+                                            {{ $tcategory->description }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div> 
+                    @endforeach
+                </div> 
+            </div>
+        </div>
+    </div>
+
+    <div class="py-5">
+        <div class="container">
+            <div class="row">
+                <h2>Sản Phẩm Hot</h2>
+                <div class="owl-carousel featured-carousel owl-theme">
+                    @foreach($featured_products as $prod)
+                        <div class="item">
+                            <a href="{{ url('category/'.$prod->category->slug.'/'.$prod->slug) }}">
                                 <div class="card">
                                     <img src="{{ asset('assets/uploads/products/'.$prod->image) }}" alt="Ảnh Sản Phẩm">
                                     <div class="card-body">
@@ -23,38 +48,43 @@
                                         <span class="float-end"> <s> {{ $prod->original_price }} </s> </span>
                                     </div>
                                 </div>
-                                {{-- </a> --}}
-                            </div> 
-                        @endforeach
-                    </div> 
-                </div>
+                            </a>
+                        </div> 
+                    @endforeach
+                </div> 
             </div>
         </div>
-
-        <div class="py-5">
-            <div class="container">
-                <div class="row">
-                    <h2>Danh Mục Trending</h2>
-                    <div class="owl-carousel featured-carousel owl-theme">
-                        @foreach($trending_category as $tcategory)
-                            <div class="item">
-                                <a href="{{ url('category/'.$tcategory->slug)}}">
-                                    <div class="card">
-                                        <img src="{{ asset('assets/uploads/category/'.$tcategory->image) }}" alt="Ảnh Danh Mục Trending">
-                                        <div class="card-body">
-                                            <h5>{{ $tcategory->name }}</h5>
-                                            <p>
-                                                {{ $tcategory->description }}
-                                            </p>
-                                        </div>
+    </div>
+    
+    <div class="py-5">
+        <div class="container">
+            <div class="row">
+                <h2>Sản Phẩm Nhiều Lượt Xem</h2>
+                <div class="owl-carousel featured-carousel owl-theme">
+                    @foreach($productsRecommend->take(6) as $keyRecommend => $prod)
+                        <div class="item">
+                            <a href="{{ url('category/'.$prod->category->slug.'/'.$prod->slug) }}">
+                                <div class="card">
+                                    <img src="{{ asset('assets/uploads/products/'.$prod->image) }}" alt="Ảnh Sản Phẩm">
+                                    <div class="card-body">
+                                        <h5>{{ $prod->name }}</h5>
+                                        <span class="float-start">{{ $prod->selling_price }}</span>
+                                        <span class="float-end"> <s> {{ $prod->original_price }} </s> </span>
                                     </div>
-                                </a>
-                            </div> 
-                        @endforeach
-                    </div> 
-                </div>
+                                    {{-- <h5>{{ $prod->view_count }} Lượt Xem</h5> --}}
+                                </div>
+                            </a>
+                        </div> 
+                    @endforeach
+                </div> 
             </div>
         </div>
+    </div>
+    
+    
+    
+
+        
 @endsection
 
 @section('scripts')

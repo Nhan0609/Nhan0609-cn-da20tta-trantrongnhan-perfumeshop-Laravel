@@ -16,26 +16,27 @@
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label for="">Slug</label>
+                        <label for="">Từ Khóa</label>
                         <input type="text" value="{{$category->slug}}" class="form-control" name="slug">
                     </div>
 
                     <div class="col-md-12 mb-3">
-                        <label for="">Description</label>
-                        <textarea name="description" rows="3" class="form-control"> {{$category->description}} </textarea>
+                        <label for="">Mô Tả</label>
+                        <textarea name="description" id="content" rows="3" class="form-control"> {{$category->description}} </textarea>
+                        {{-- <textarea class="form-control" id="description" name="description" rows="10" cols="80">{{$category->description}}</textarea> --}}
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label for="">Status</label>
+                        <label for="">Ẩn</label>
                         <input type="checkbox" {{$category->status == "1" ? 'checked':''}} name="status">
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label for="">Popular</label>
+                        <label for="">Thịnh Hành</label>
                         <input type="checkbox" {{$category->popular == "1" ? 'checked':''}} name="popular">
                     </div>
 
-                    <div class="col-md-12 mb-3">
+                    {{-- <div class="col-md-12 mb-3">
                         <label>Meta Title</label>
                         <input type="text" value="{{$category->meta_title}}" rows="3" class="form-control" name="meta_title">
                     </div>
@@ -48,7 +49,7 @@
                     <div class="col-md-12 mb-3">
                         <label for="">Meta Description</label>
                         <textarea name="meta_description" rows="3" class="form-control">{{$category->meta_descrip}}</textarea>
-                    </div>
+                    </div> --}}
                 @if($category->image)    
                     <img src="{{ asset('assets/uploads/category/'.$category->image) }}" alt="Hình Ảnh">
                 @endif    
@@ -57,10 +58,16 @@
                     </div>
                     
                     <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary"> Submit </button>
+                        <button type="submit" class="btn btn-primary"> Lưu </button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 @endsection
+{{-- @section('custom-js')
+<script src="http://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+     <script>
+         CKEDITOR.replace('description');
+      </script>
+@endsection --}}

@@ -1,4 +1,41 @@
 $(document).ready(function () {
+    //Hiển thị số lượng sản phẩm có trong giỏ hàng
+    loadcart();
+    loadwishlist();
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    function loadcart()
+    {
+        $.ajax({
+            method: "GET",
+            url: "/load-cart-data",
+            success: function (response){
+                $('.cart-count').html('');
+                $('.cart-count').html(response.count);
+                // console.log(response.count)
+            }
+        });
+    }
+
+    //Hiển thị số lượng sản phẩm có trong danh sách yêu thích
+    function loadwishlist()
+    {
+        $.ajax({
+            method: "GET",
+            url: "/load-wishlist-count",
+            success: function (response){
+                $('.wishlist-count').html('');
+                $('.wishlist-count').html(response.count);
+                // console.log(response.count)
+            }
+        });
+    }
+
     //Thêm sản phẩm vào giỏ hàng
         $('.addToCartBtn').click(function(e) {
             e.preventDefault();
@@ -21,6 +58,7 @@ $(document).ready(function () {
                 },
                 success: function(response){
                     swal(response.status);
+                    loadcart();
                 }
             });
     
@@ -39,10 +77,10 @@ $(document).ready(function () {
                 },
                 success: function (response){
                     swal(response.status);
+                    loadwishlist();
                 }
             });
         });
-
 
         // Tăng số lượng sản phẩm
         $('.increment-btn').click(function (e){
