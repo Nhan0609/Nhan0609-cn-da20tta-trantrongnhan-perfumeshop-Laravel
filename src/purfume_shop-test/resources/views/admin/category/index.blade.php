@@ -11,10 +11,10 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Image</th>
-                        <th>Action</th>
+                        <th>Tên</th>
+                        <th>Mô Tả</th>
+                        <th>Hình Ảnh</th>
+                        <th>Xử Lý</th>
                     </tr>
                 </thead>
                 <tbody>

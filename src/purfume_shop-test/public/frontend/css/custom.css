@@ -26,4 +26,184 @@
     font-size: 14px;
     padding: 5px !important;
 }
+/* Zoom ảnh */
+.anhsanpham{
+    width: 340px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 16px;
+}
+.anhsanpham img{
+    object-fit: cover;
+    transition: transform 0.8s;
+    height: 100%;
+}
+.anhsanpham :hover img{
+    transform: scale(1.5);
+}
 
+/*Hiển thị ảnh */
+.anhsanpham{
+    width: 340px;
+    margin: auto;
+}
+.anhsanpham>.anhsanphamchinh{
+    width: 340px;
+    margin-bottom: 20px;
+}
+.anhsanpham .detail img {
+    width: 70px;
+    height: 70px;
+    /* border: 1px solid #333; */
+    margin: 10px;
+}
+
+/*Bắt đầu thanh header giới thiệu 
+/* Topbar Styling */
+.container-fluid.border-bottom.d-none.d-lg-block {
+    background-color: #f8f9fa; /* Màu nền của Topbar */
+    padding: 10px 0; /* Khoảng cách giữa phần nội dung và mép Topbar */
+}
+
+.col-lg-4.text-center.py-2 {
+    border: none; /* Bỏ viền ở các cột */
+}
+
+/* Các phần cụ thể của Topbar */
+.col-lg-4.text-center,
+.col-lg-4.text-center.border-start.border-end {
+    padding: 10px; /* Khoảng cách giữa các cột */
+}
+
+/* Biểu tượng */
+i.bi {
+    font-size: 1.5rem; /* Kích thước của biểu tượng */
+    color: #007bff; /* Màu của biểu tượng */
+}
+
+/* Nội dung văn bản */
+div.text-start {
+    margin-left: 10px; /* Khoảng cách giữa biểu tượng và văn bản */
+}
+
+h6.text-uppercase.mb-1 {
+    font-size: 1rem; /* Kích thước của tiêu đề */
+    margin-bottom: 0.5rem; /* Khoảng cách giữa tiêu đề và nội dung */
+    text-align: center; /* Căn giữa văn bản */
+}
+
+/* Địa chỉ liên hệ và Số điện thoại */
+span {
+    font-size: 0.875rem; /* Kích thước của nội dung văn bản */
+    color: #495057; /* Màu văn bản */
+}
+
+/* Topbar Styling */
+.container-fluid.border-bottom.d-none.d-lg-block {
+    background-color: #f8f9fa; /* Màu nền của Topbar */
+    padding: 10px 0; /* Khoảng cách giữa phần nội dung và mép Topbar */
+}
+
+.col-lg-4.text-center.py-2 {
+    border: none; /* Bỏ viền ở các cột */
+}
+
+/* Các phần cụ thể của Topbar */
+.col-lg-4.text-center,
+.col-lg-4.text-center.border-start.border-end {
+    padding: 10px; /* Khoảng cách giữa các cột */
+}
+
+/* Biểu tượng */
+i.bi {
+    font-size: 1.5rem; /* Kích thước của biểu tượng */
+    color: #007bff; /* Màu của biểu tượng */
+}
+
+/* Nội dung văn bản */
+div.text-start {
+    margin-left: 10px; /* Khoảng cách giữa biểu tượng và văn bản */
+}
+
+h6.text-uppercase.mb-1 {
+    font-size: 1rem; /* Kích thước của tiêu đề */
+    margin-bottom: 0.5rem; /* Khoảng cách giữa tiêu đề và nội dung */
+    text-align: center; /* Căn giữa văn bản */
+}
+
+/* Địa chỉ liên hệ và Số điện thoại */
+span {
+    font-size: 0.875rem; /* Kích thước của nội dung văn bản */
+    color: #495057; /* Màu văn bản */
+}
+
+/* Hiệu ứng hover */
+.col-lg-4.text-center:hover,
+.col-lg-4.text-center.border-start.border-end:hover {
+    background-color: #e2e8f0; /* Màu nền khi hover */
+    transition: background-color 0.3s ease; /* Hiệu ứng chuyển động màu nền */
+}
+
+/* Canh giữa nội dung trong cột */
+.d-inline-flex.align-items-center {
+    justify-content: center;
+    text-align: left;
+}
+/* Kết thúc thanh header giới thiệu
+
+/* Navbar Styling */
+.navbar {
+    background-color: #ffffff; /* Màu nền của thanh điều hướng */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng cho thanh điều hướng */
+}
+
+.navbar-brand {
+    font-size: 1.8rem; /* Kích thước của logo hoặc tên thương hiệu */
+    color: #333; /* Màu chữ của logo hoặc tên thương hiệu */
+}
+
+.navbar-toggler-icon {
+    background-color: #333; /* Màu của biểu tượng toggle */
+}
+
+/* Điều hướng chính */
+.navbar-nav.ms-auto {
+    display: flex;
+    align-items: center;
+}
+
+.nav-link {
+    margin-left: 1.5rem; /* Khoảng cách giữa các liên kết trong thanh điều hướng */
+    color: #333; /* Màu chữ của liên kết */
+    transition: color 0.3s ease; /* Hiệu ứng màu khi di chuột qua liên kết */
+}
+
+.nav-link:hover {
+    color: #28a745; /* Màu chữ khi di chuột qua liên kết */
+}
+
+/* Biểu tượng giỏ hàng và danh sách mong muốn */
+.fa-shopping-cart,
+.fa-heart {
+    color: #333; /* Màu của biểu tượng giỏ hàng và danh sách mong muốn */
+}
+
+/* Xin chào và đăng nhập/logout */
+.nav-link.active:hover,
+.nav-link.underline:hover {
+    text-decoration: underline; /* Gạch chân khi di chuột qua liên kết có chữ 'Xin Chào' và 'Đăng Nhập/Logout' */
+}
+
+/* Badge trong giỏ hàng và danh sách mong muốn */
+.badge-pill {
+    position: relative;
+    top: -5px; /* Điều chỉnh vị trí của badge */
+}
+
+/* Hiệu ứng hover cho các liên kết */
+.nav-link.active:hover,
+.nav-link.underline:hover,
+.nav-link.active:hover {
+    color: #28a745; /* Màu chữ khi di chuột qua liên kết có chữ 'Xin Chào' và 'Đăng Nhập/Logout' */
+    text-decoration: underline; /* Gạch chân khi di chuột qua liên kết */
+}

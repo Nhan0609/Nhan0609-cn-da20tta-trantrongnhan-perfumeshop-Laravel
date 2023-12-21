@@ -44,13 +44,13 @@
                         </div>
 
                         <div class="col-md-2 my-auto mt-3">
-                            <h6> {{ $item->products->selling_price}} </h6>
+                            <h6> {{ number_format($item->products->selling_price)}} VNĐ </h6>
                         </div>
 
                         <div class="col-md-2 my-auto mt-3">
                             <input type="hidden" class="prod_id" value="{{ $item->prod_id }}">
 
-                            @if($item->products->qty >= $item->prod_qty)
+                            @if($item->products->qty > 0)
                                 <h6>Còn Hàng</h6>
                                 <label for="Quantity"> Số lượng </label>
                             <div class="input-group text-center mb-3" style="width: 130px;">
@@ -87,6 +87,7 @@
             </div>  
         </div>
     </div>
+    @include('layouts.inc.footer')
 @endsection
 
 

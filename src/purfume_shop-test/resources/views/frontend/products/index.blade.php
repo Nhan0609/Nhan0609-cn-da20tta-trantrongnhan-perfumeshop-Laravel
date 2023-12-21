@@ -27,8 +27,8 @@
                                     <img src="{{ asset('assets/uploads/products/'.$prod->image) }}" alt="Ảnh Sản Phẩm">
                                         <div class="card-body">
                                             <h5>{{ $prod->name }}</h5>
-                                            <span class="float-start">{{ $prod->selling_price }}</span>
-                                            <span class="float-end"> <s> {{ $prod->original_price }} </s> </span>
+                                            <span class="float-start">{{ number_format($prod->selling_price) }} VNĐ</span>
+                                            <span class="float-end"> <s> {{ number_format($prod->original_price) }} VNĐ</s> </span>
                                         </div>
                                     </a>
                                 </div>
@@ -38,4 +38,5 @@
                 </div>
             </div>
         </div>
+        @include('layouts.inc.footer')
 @endsection

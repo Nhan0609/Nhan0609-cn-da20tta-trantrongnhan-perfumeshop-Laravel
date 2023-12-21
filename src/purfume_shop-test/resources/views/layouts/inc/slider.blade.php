@@ -6,13 +6,13 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="{{asset('assets/images/slide1.jpg')}}" class="d-block " alt="...">
+      <a href="{{url('category/nuochoanu/nuochoanue.arden')}}"><img src="{{asset('assets/images/slide7.gif')}}" class="d-block " alt="..."></a>
     </div>
     <div class="carousel-item">
-      <img src="{{asset('assets/images/slide5.webp')}}" class="d-block " alt="...">
+      <a href="{{url('category/nuochoanam')}}"><img src="{{asset('assets/images/slide4.gif')}}" class="d-block " alt="..."></a>
     </div>
     <div class="carousel-item">
-      <img src="{{asset('assets/images/slide4.png')}}" class="d-block " alt="...">
+      <a href="{{url('category/nuochoanu')}}"><img src="{{asset('assets/images/slide6.gif')}}" class="d-block " alt="..."></a>
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

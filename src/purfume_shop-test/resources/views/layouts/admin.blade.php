@@ -39,7 +39,7 @@
 <script src="{{ asset('admin/js/bootstrap-material-design.min.js') }}" defer></script>
 <script src="{{ asset('admin/js/perfect-scrollbar.jquery.min.js') }}" defer></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-{{-- ckediter --}}
+{{-- Ckediter --}}
 <script src="{{ asset('/ckeditor/ckeditor.js') }}"></script>
 <script src="{{ asset('/ckeditor/plugins/ckfinder/ckfinder.js') }}"></script>
 <script>

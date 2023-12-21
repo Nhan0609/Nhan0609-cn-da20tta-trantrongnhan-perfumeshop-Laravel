@@ -41,14 +41,14 @@
                                 <div class="border">{{ $orders->phone }}</div>
                                 <label for="">Địa Chỉ Giao Hàng</label>
                                 <div class="border">
-                                    {{ $orders->address1 }}, <br>
-                                    {{ $orders->address2 }}, <br>
-                                    {{ $orders->city }}, <br>
-                                    {{ $orders->state }},
-                                    {{ $orders->country }},
+                                    Địa Chỉ 1: {{ $orders->address1 }}, <br>
+                                    Địa Chỉ 2: {{ $orders->address2 }}, <br>
+                                    Thành Phố: {{ $orders->city }}, <br>
+                                    Tỉnh: {{ $orders->state }},
+                                    Quốc Gia: {{ $orders->country }},
                                 </div>
-                                <label for="">Zip Code</label>
-                                <div class="border">{{ $orders->pincode }}</div>
+                                {{-- <label for="">Zip Code</label>
+                                <div class="border">{{ $orders->pincode }}</div> --}}
                             </div>
                             <div class="col-md-6">
                                 <h4>Chi Tiết Đơn Hàng</h4>
@@ -68,7 +68,7 @@
                                             <tr>
                                                 <td>{{ $item->products->name }} </td>
                                                 <td>{{ $item->qty }} </td>
-                                                <td>{{ $item->price }} </td>
+                                                <td>{{ number_format($item->price) }} VNĐ </td>
                                                 <td>
                                                     <img src="{{ asset('assets/uploads/products/'.$item->products->image) }}" width="50px" alt="Ảnh Sản Phẩm">
                                                 </td>
@@ -77,7 +77,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <h4 class="px-2"> Tổng Cộng: <span class="float-end">{{ $orders->total_price }} </span></h4>
+                                <h4 class="px-2"> Tổng Thanh Toán: <span class="float-end">{{ number_format($orders->total_price) }} VNĐ</span></h4>
                             </div>
                         </div>
                         
@@ -88,5 +88,5 @@
         </div>
     </div>
 
-
+    @include('layouts.inc.footer')
 @endsection

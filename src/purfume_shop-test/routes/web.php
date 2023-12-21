@@ -61,14 +61,15 @@ Route::post('add-to-wishlist', [WishlistController::class, 'add']);
 //Xóa sản phẩm khỏi danh sách yêu thích
 Route::post('delete-wishlist-item', [WishlistController::class, 'deleteitem']);
 
+Route::get('cart', [CartController::class, 'viewcart']);
+//Thanh toán
+Route::get('checkout', [CheckoutController::class, 'index']);
+//Đặt hàng
+Route::post('place-order', [CheckoutController::class, 'placeorder']);
 
 //Giỏ hàng
 Route::middleware(['auth'])-> group(function(){
-   Route::get('cart', [CartController::class, 'viewcart']);
-//Thanh toán
-   Route::get('checkout', [CheckoutController::class, 'index']);
-//Đặt hàng
-   Route::post('place-order', [CheckoutController::class, 'placeorder']);
+   
 //Xem đơn hàng
    Route::get('my-orders', [UserController::class, 'index']);
 //Xem chi tiết đơn hàng

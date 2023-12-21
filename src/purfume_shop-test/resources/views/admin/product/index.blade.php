@@ -12,10 +12,10 @@
                     <tr>
                         <th>ID</th>
                         <th>Danh Mục</th>
-                        <th>Name</th>
+                        <th>Tên</th>
                         <th>Giá Giảm</th>
-                        <th>Image</th>
-                        <th>Action</th>
+                        <th>Hình Ảnh</th>
+                        <th>Xử Lý</th>
                     </tr>
                 </thead>
                 <tbody>

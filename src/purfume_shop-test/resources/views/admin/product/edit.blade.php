@@ -46,10 +46,10 @@
                         <input type="number" value="{{ $products->selling_price}}" class="form-control" name="selling_price">
                     </div>
 
-                    <div class="col-md-6 mb-3">
+                    {{-- <div class="col-md-6 mb-3">
                         <label for=""> &emsp;</label>
                         <input type="number" value="{{ $products->tax}}" class="form-control" name="tax">
-                    </div>
+                    </div> --}}
 
                     <div class="col-md-6 mb-3">
                         <label for="">Số lượng</label>
@@ -88,6 +88,11 @@
                     <div class="col-md-12">
                         <input type="file" name="image" class="form-control">
                     </div>
+
+                    {{-- <div class="col-md-12">
+                        <label for="">Ảnh Chi Tiết</label>
+                        <input type="file" name="image" class="form-control" multiple>
+                    </div> --}}
 
                     <div class="col-md-12">
                         <button type="submit" class="btn btn-primary"> Cập Nhật </button>

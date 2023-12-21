@@ -18,19 +18,19 @@ class CreateProductsTable extends Migration
             $table->bigInteger('cate_id');
             $table->string('name');
             $table->string('slug');
-            $table->mediumText('small_description');
+            $table->mediumText('small_description')->nullable();
             $table->longText('description');
-            $table->string('original_price');
-            $table->string('selling_price');
+            $table->double('original_price');
+            $table->double('selling_price');
             $table->string('image');
-            $table->string('qty');
-            $table->string('tax');
+            $table->integer('qty')->default('0');
+            $table->string('tax')->nullable();
             $table->tinyInteger('status');
             $table->tinyInteger('trending');
-            $table->integer('view_count');
-            $table->mediumText('meta_title');
-            $table->mediumText('meta_keywords');
-            $table->mediumText('meta_description');
+            $table->integer('view_count')->nullable();
+            $table->mediumText('meta_title')->nullable();
+            $table->mediumText('meta_keywords')->nullable();
+            $table->mediumText('meta_description')->nullable();
             $table->timestamps();
         });
     }

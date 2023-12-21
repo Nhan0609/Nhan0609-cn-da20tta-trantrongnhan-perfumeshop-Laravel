@@ -26,7 +26,7 @@
 
     <div class="container my-5">
         <div class="card shadow ">
-            @if ($cartitems->count() > 0 )
+            @if (count($cartitems) > 0 )
                 
                 <div class="card-body">
 
@@ -41,15 +41,20 @@
                             <img src="{{ asset('assets/uploads/products/'.$item->products->image) }}" height="70px" width="70px" alt="Hình ảnh">
                         </div>
 
-                        <div class="col-md-3 my-auto">
+                        <div class="col-md-2 my-auto">
                             <h6> {{ $item->products->name}} </h6>
                         </div>
 
                         <div class="col-md-2 my-auto">
-                            <h6> {{ $item->products->selling_price}} </h6>
+                            <h6> {{ number_format($item->products->selling_price)}}</span> VNĐ </h6>
                         </div>
 
-                        <div class="col-md-3 my-auto">
+                        <div class="col-md-2 my-auto">
+                            <h6> Hiện Còn {{ $item->products->qty }} Sản Phẩm</h6>
+                            <input type="hidden" class="prod_qty" value="{{$item->products->qty }}">
+                        </div>
+
+                        <div class="col-md-2 my-auto">
                             <input type="hidden" class="prod_id" value="{{ $item->prod_id }}">
 
                             @if($item->products->qty >= $item->prod_qty)
@@ -78,7 +83,7 @@
                 </div>
            
                 <div class="card-footer">
-                    <h6> Tổng tiền: {{ $total }} 
+                    <h6> Tổng tiền: <span class="total_price">{{ number_format($total) }}</span> VNĐ
                     <a href="{{ url('checkout') }}" class="btn btn-outline-success float-end"> Tiếp tục </a>
                     </h6>
                 </div>
@@ -92,6 +97,5 @@
                 @endif
         </div>
     </div>
+    @include('layouts.inc.footer')
 @endsection
-
-

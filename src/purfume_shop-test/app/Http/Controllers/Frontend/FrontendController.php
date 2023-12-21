@@ -14,7 +14,7 @@ class FrontendController extends Controller
     {
         $featured_products = Product::where('trending', '1')->take(15)->get();
         $trending_category = Category::where('popular','1')->take(15)->get();
-//sản phẩm nhiều view
+//Sản phẩm nhiều view
         $productsRecommend = Product::Latest('view_count', 'desc')->take(15)->get();
         
         return view('frontend.index', compact('featured_products','trending_category', 'productsRecommend'));
@@ -26,6 +26,7 @@ class FrontendController extends Controller
         return view('frontend.category', compact('category'));
     }
 
+//Hiển thị danh mục hot
     public function viewcategory($slug)
     {
         if(Category::where('slug', $slug)->exists())
@@ -40,6 +41,7 @@ class FrontendController extends Controller
         }     
     }
 
+//Hiển thị sản phẩm thịnh hành
     public function productview($cate_slug, $prod_slug)
     {
     if(Category::where('slug', $cate_slug)->exists())
@@ -59,7 +61,7 @@ class FrontendController extends Controller
                 }    
             }
 
-
+//Tìm kiếm sản phẩm
     public function search(Request $request)
     {
 

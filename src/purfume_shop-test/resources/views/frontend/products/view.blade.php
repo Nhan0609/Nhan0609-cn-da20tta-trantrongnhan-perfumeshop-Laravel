@@ -29,20 +29,45 @@
         <div class="card shadow product_data">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-mb4 border-right">
-                        <img src="{{ asset('assets/uploads/products/'.$products->image) }}" class="" alt="">
-                    </div>
-                    <div class="col-md-8">
-                        <h2 class="mb-0">
+                    <h2 class="mb-0">
                             {{ $products->name }}
                             @if($products->trending == '1')
                                 <label style="font-size: 16px;" class="float-end badge bg-danger trending_tag">Trending </label>
                             @endif
                         </h2>
+                
+                    <div class="col-md-6 mb-4 mt-3 border-right">
+                        <div class="anhsanpham">
+                            <div class="main">
+                                <img src="{{ asset('assets/uploads/products/'.$products->image) }}" class="anhsanphamchinh" alt="">
+                            </div>
+                                <br>
+                                <br>
+                            <h3> Ảnh Chi Tiết </h3>
+                            <div class="detail">
+                                <div class="row">
+                                    <div class="col-md-4 mt-3 ">                        
+                                        <img  src="{{ asset('assets/uploads/products/'.$products->image) }}" alt="">
+                                    </div>
+
+                                    <div class="col-md-4 mt-3">
+                                        <img  src="{{ asset('assets/uploads/products/'.$products->image) }}" alt="">
+                                    </div>
+                                    
+                                    <div class="col-md-4 mt-3">
+                                        <img  src="{{ asset('assets/uploads/products/'.$products->image) }}" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        
 
                         <hr>
-                        <label class="me-3">Giá Gốc: <s> {{ $products->original_price }}</s></label>
-                        <label class="fw-bold">Giảm Còn: {{ $products->selling_price }}</label>
+                        <label class="me-3">Giá Gốc: <s> {{ number_format($products->original_price) }}</s></label>
+                        <label class="fw-bold">Giảm Còn: {{ number_format($products->selling_price) }}</label>
                         <p class="mt-3">
                             <div class="col-md-5">
                             {!! $products->small_description !!}
@@ -77,6 +102,7 @@
                         @if($products->qty > 0)
                             
                             <button type="button" class="btn btn-success me-3 addToCartBtn float-start">Thêm vào Giỏ Hàng <i class="fa fa-shopping-cart"></i></button>
+                            {{-- <button class="btn btn-success addToCartBtn "> <i class="fa fa-shopping-cart"></i> Thêm Vào Giỏ Hàng </button> --}}
                         
                         @endif
 
@@ -88,13 +114,16 @@
                     
                     <div class="col-md-4">
                        <h3> Chi Tiết Sản Phẩm</h3>
-                       
                         {!! $products->description !!}
+
+                        
                     </div>
+
                 </div>
             </div>
             
         </div>
     </div>
+    @include('layouts.inc.footer')
 @endsection
 

@@ -88,10 +88,11 @@ $(document).ready(function () {
     
             // var inc_value = $('.qty-input').val();
             var inc_value = $(this).closest('.product_data').find('.qty-input').val();
+            var prod_qty = $(this).closest('.product_data').find('.prod_qty').val();
             var value = parseInt(inc_value, 10);
             value = isNaN(value) ? 0 : value;
     
-            if(value < 10)
+            if(value < 10 && parseInt(prod_qty, 10) > value)
             {
                 value++;
                 // $('.qty-input').val(value);
@@ -195,4 +196,15 @@ $(document).ready(function () {
             });
         });
         
+    //Hiển thị ảnh
+    var danhsachsp = document.querySelectorAll(".anhsanpham .detail img");
+
+for (var i = 0; i < danhsachsp.length; i++) {
+    danhsachsp[i].onmouseover = function () {
+        // alert(this.src);
+        var mainImg = document.querySelector(".anhsanpham .anhsanphamchinh");
+        mainImg.src = this.src;
+    };
+}
+
     }); 
