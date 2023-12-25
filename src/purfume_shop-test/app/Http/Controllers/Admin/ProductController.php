@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Product;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
@@ -50,6 +51,19 @@ class ProductController extends Controller
             $products-> meta_description = $request ->input('meta_description');
             
             $products->save();
+
+            if($request-> hasFile('image2'))
+            {
+                foreach($request -> file('image2') as $imgDetail) {
+                    $imgName = $products->id .'_'. time() . rand(1, 1000) .'.'. $imgDetail->getClientOriginalExtension();
+                    $imgDetail->move('assets/multiple_image/products/',$imgName);
+                    
+                    $image = new Image();
+                    $image->prod_id = $products->id;
+                    $image->image_path = $imgName;
+                    $image->save();
+                }
+            }
             return redirect('products')->with('status',"Thêm Sản Phẩm Thành Công");
    
     }
@@ -92,6 +106,30 @@ class ProductController extends Controller
             $products-> meta_description = $request ->input('meta_description');
 
             $products->update();
+//upload nhiều ảnh
+            if($request-> hasFile('image2'))
+            {
+                $mul_images = Image::where('prod_id', $id)->get();
+                $path_mul = 'assets/multiple_image/products/';
+                foreach ($mul_images as $img) {
+                    if(File::exists($path_mul . $img->image_path))
+                    {
+                        File::delete($path_mul . $img->image_path);
+                    }
+                    $img -> delete();
+                }
+
+                foreach($request -> file('image2') as $imgDetail) {
+                    $imgName = $products->id .'_'. time() . rand(1, 1000) .'.'. $imgDetail->getClientOriginalExtension();
+                    $imgDetail->move($path_mul, $imgName);
+                    
+                    $image = new Image();
+                    $image->prod_id = $products->id;
+                    $image->image_path = $imgName;
+                    $image->save();
+                }
+            }
+
             return redirect('products')->with('status', 'Sửa Sản Phẩm Thành Công');
     }
 
@@ -104,6 +142,18 @@ class ProductController extends Controller
                         File::delete($path);
                     }
         $products->delete();
+
+        $mul_images = Image::where('prod_id', $id)->get();
+        $path_mul = 'assets/multiple_image/products/';
+        foreach ($mul_images as $img) {
+            if(File::exists($path_mul . $img->image_path))
+            {
+                File::delete($path_mul . $img->image_path);
+            }
+            $img -> delete();
+        }
+
         return redirect('products')->with('status', 'Xóa Sản Phẩm Thành Công');
     }
+    
 }

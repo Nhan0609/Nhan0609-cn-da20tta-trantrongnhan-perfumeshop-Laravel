@@ -85,6 +85,9 @@ $(document).ready(function () {
         // Tăng số lượng sản phẩm
         $('.increment-btn').click(function (e){
             e.preventDefault();
+            console.log(e.currentTarget.getAttribute('baseURI'));
+            console.log(window.location.origin);
+            
     
             // var inc_value = $('.qty-input').val();
             var inc_value = $(this).closest('.product_data').find('.qty-input').val();
@@ -196,15 +199,13 @@ $(document).ready(function () {
             });
         });
         
-    //Hiển thị ảnh
+    //Xử lý hiển thị ảnh chi tiết
     var danhsachsp = document.querySelectorAll(".anhsanpham .detail img");
+        for (var i = 0; i < danhsachsp.length; i++) {
+            danhsachsp[i].onmouseover = function () {
 
-for (var i = 0; i < danhsachsp.length; i++) {
-    danhsachsp[i].onmouseover = function () {
-        // alert(this.src);
-        var mainImg = document.querySelector(".anhsanpham .anhsanphamchinh");
-        mainImg.src = this.src;
-    };
-}
-
+                var mainImg = document.querySelector(".anhsanpham .anhsanphamchinh");
+                mainImg.src = this.src;
+            };
+        }
     }); 

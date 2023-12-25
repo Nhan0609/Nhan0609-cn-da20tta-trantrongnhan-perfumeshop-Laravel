@@ -43,22 +43,21 @@
                             </div>
                                 <br>
                                 <br>
-                            <h3> Ảnh Chi Tiết </h3>
-                            <div class="detail">
-                                <div class="row">
-                                    <div class="col-md-4 mt-3 ">                        
-                                        <img  src="{{ asset('assets/uploads/products/'.$products->image) }}" alt="">
-                                    </div>
-
-                                    <div class="col-md-4 mt-3">
-                                        <img  src="{{ asset('assets/uploads/products/'.$products->image) }}" alt="">
-                                    </div>
-                                    
-                                    <div class="col-md-4 mt-3">
-                                        <img  src="{{ asset('assets/uploads/products/'.$products->image) }}" alt="">
+                                <h3>Ảnh Chi Tiết</h3>
+                                <div class="detail">
+                                    <div class="row">
+                                        @if($products->multiple_images->count() > 0)
+                                            @foreach ($products->multiple_images as $img_detail)
+                                                <div class="col-md-4 mt-3">
+                                                    <img src="{{ asset('assets/multiple_image/products/'.$img_detail->image_path) }}" alt="Ảnh chi tiết sản phẩm">
+                                                </div>
+                                            @endforeach
+                                        @else
+                                            <p>Không Có Ảnh Chi Tiết Cho Sản Phẩm Này.</p>
+                                        @endif
                                     </div>
                                 </div>
-                            </div>
+                                
                         </div>
                     </div>
                     
@@ -75,6 +74,7 @@
 
                             <div class="col-md-5 mt-3">
                                 Có Sẵn <b>{{ $products->qty }}</b> Sản Phẩm
+                                <input type="hidden" value="{{ $products->qty }}" class="prod_qty">
                             </div>
                         </p>
 

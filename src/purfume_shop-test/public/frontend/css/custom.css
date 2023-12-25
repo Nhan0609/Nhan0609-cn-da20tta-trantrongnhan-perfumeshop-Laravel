@@ -207,3 +207,47 @@ span {
     color: #28a745; /* Màu chữ khi di chuột qua liên kết có chữ 'Xin Chào' và 'Đăng Nhập/Logout' */
     text-decoration: underline; /* Gạch chân khi di chuột qua liên kết */
 }
+
+
+.card {
+    margin-top: 50px;
+}
+
+.card-header {
+    text-align: center;
+    font-size: 24px;
+    background-color: #3490dc;
+    color: #fff;
+}
+
+.col-md-4 {
+    font-weight: bold;
+    line-height: 2.5;
+}
+
+.form-control {
+    margin-bottom: 10px;
+}
+
+.form-check {
+    padding-top: 10px;
+}
+
+.chopchop{
+    font-weight: bolder;
+    text-shadow: 2px 2px 4px black;
+    animation: color 8s infinite;
+}
+@keyframes color {
+    0% {color: blue;}
+    10% {color: blueviolet;}
+    20% {color: red;}
+    30% {color: green;}
+    40% {color: yellow;}
+    50% {color: aqua;}
+    60% {color: purple;}
+    70% {color: cyan;}
+    80% {color: coral;}
+    90% {color: orangered;}
+    100% {color: orange}
+}

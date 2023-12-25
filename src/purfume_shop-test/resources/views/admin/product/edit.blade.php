@@ -82,17 +82,26 @@
                     </div> --}}
 
                     @if($products->image) 
-                        <img src="{{ asset('assets/uploads/products/'.$products->image) }}" alt="" >
+                        <img src="{{ asset('assets/uploads/products/'.$products->image) }}" alt="Image product" >
                     @endif
 
                     <div class="col-md-12">
                         <input type="file" name="image" class="form-control">
                     </div>
 
-                    {{-- <div class="col-md-12">
+                    @if($products->multiple_images->count() > 0)
+   
+        @foreach ($products->multiple_images as $img_detail)
+            <img src="{{ asset('assets/multiple_image/products/'.$img_detail->image_path) }}" alt="Ảnh chi tiết sản phẩm">
+        @endforeach
+   
+@endif
+
+
+                    <div class="col-md-12">
                         <label for="">Ảnh Chi Tiết</label>
-                        <input type="file" name="image" class="form-control" multiple>
-                    </div> --}}
+                        <input type="file" name="image2[]" class="form-control" multiple>
+                    </div>
 
                     <div class="col-md-12">
                         <button type="submit" class="btn btn-primary"> Cập Nhật </button>

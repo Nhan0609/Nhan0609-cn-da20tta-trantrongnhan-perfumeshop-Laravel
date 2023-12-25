@@ -14,7 +14,7 @@
           <div class="d-inline-flex align-items-center">
               <i class="bi bi-envelope-open fs-1 text-primary me-3"></i>
               <div class="text-start">
-                  <h6 class="text-uppercase mb-1">Liên hệ</h6>
+                  <a href="{{url('views.interact.contact')}}"><h6 class="text-uppercase mb-1">Liên hệ</h6></a>
                   <span>perfumeshoptv@gmail.com</span>
               </div>
           </div>
@@ -33,8 +33,8 @@
 {{-- End Topbar --}}
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
-    <a class="navbar-brand" href="{{ url('/categories') }}">Perfume Shop</a>
+  {{-- <div class="container"> --}}
+    <a style="padding: 15px" class="navbar-brand" href="{{ url('/categories') }}"><img  src="{{asset('assets/images/logo.gif')}}" alt="Logo đầu trang"/></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -122,5 +122,5 @@
 
       </div>
     </div>
-  </div>
+  {{-- </div> --}}
 </nav>

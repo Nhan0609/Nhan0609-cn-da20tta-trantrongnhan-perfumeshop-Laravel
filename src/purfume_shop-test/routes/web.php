@@ -27,6 +27,15 @@ use App\Http\Controllers\Frontend\WishlistController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+//Tăng số lượt xem
+// Route::post('/increase-view-count', 'ProductController@increaseViewCount')->name('increase.view.count');
+
+
+//Giới thiệu website
+Route::get('/views.interact.introduce', [FrontendController::class, 'viewintroduce']);
+//Liên hệ
+Route::get('/views.interact.contact', [FrontendController::class, 'viewcontact']);
+
 
 //Frontend
 Route::get('/', [FrontendController::class, 'index']);

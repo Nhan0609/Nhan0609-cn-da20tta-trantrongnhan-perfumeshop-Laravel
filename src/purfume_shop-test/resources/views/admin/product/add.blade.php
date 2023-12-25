@@ -90,10 +90,10 @@
                         <input type="file" name="image" class="form-control">
                     </div>
 
-                    {{-- <div class="col-md-12">
+                    <div class="col-md-12">
                         <label for="">Ảnh Chi Tiết</label>
-                        <input type="file" name="image[]" class="form-control" multiple>
-                    </div> --}}
+                        <input type="file" name="image2[]" class="form-control" multiple>
+                    </div>
 
                     <div class="col-md-12">
                         <button type="submit" class="btn btn-primary"> Thêm </button>

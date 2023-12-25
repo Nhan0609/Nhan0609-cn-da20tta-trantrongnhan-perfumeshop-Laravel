@@ -49,6 +49,9 @@ class FrontendController extends Controller
             if(Product::where('slug', $prod_slug)->exists())
             {
                 $products = Product::where('slug', $prod_slug)->first();
+                $products->view_count += 1; //Tăng số lượt xem
+                $products->save(); 
+
                 return view('frontend.products.view', compact('products'));
             }
         else{
@@ -69,6 +72,17 @@ class FrontendController extends Controller
     $search_product = Product::where('name', 'like', '%' . $keywords . '%')->paginate(10);
 
     return view('frontend.products.search', compact('search_product', 'keywords'));
+    }
+
+//Xem giới thiệu website
+    public function viewintroduce()
+    {
+        return view('interact.introduce');
+    }
+//Xem liên hệ    
+    public function viewcontact()
+    {
+        return view('interact.contact');
     }
 
 

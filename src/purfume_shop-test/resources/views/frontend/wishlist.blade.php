@@ -52,8 +52,8 @@
 
                             @if($item->products->qty > 0)
                                 <h6>Còn Hàng</h6>
-                                <label for="Quantity"> Số lượng </label>
-                            <div class="input-group text-center mb-3" style="width: 130px;">
+                                <label for="Quantity" hidden> Số lượng </label>
+                            <div class="input-group text-center mb-3" hidden style="width: 130px;">
                                 <button class="input-group-text decrement-btn"> - </button>
                                 <input type="text" name="quantity" class="form-control qty-input text-center" value="1" >
                                 <button class="input-group-text increment-btn"> + </button>
