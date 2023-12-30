@@ -27,8 +27,7 @@ use App\Http\Controllers\Frontend\WishlistController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-//Tăng số lượt xem
-// Route::post('/increase-view-count', 'ProductController@increaseViewCount')->name('increase.view.count');
+
 
 
 //Giới thiệu website
@@ -41,13 +40,15 @@ Route::get('/views.interact.contact', [FrontendController::class, 'viewcontact']
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('category',[FrontendController::class, 'category']);
 Route::get('category/{slug}', [FrontendController::class, 'viewcategory']);
+//Hiển thị sản phẩm có view cao
 Route::get('category/{cate_slug}/{prod_slug}',[FrontendController::class, 'productview']);
 //Tìm kiếm sản phẩm
 Route::post('timkiem', [FrontendController::class, 'search']);
-//Hiển thị sản phẩm có view cao
+//Hiển thị tất cả sản phẩm
+Route::get('allprod', [FrontendController::class, 'allprod']);
 
 
-// Route::get('info', []);
+
 
 // Auth
 Auth::routes();
@@ -75,10 +76,8 @@ Route::get('cart', [CartController::class, 'viewcart']);
 Route::get('checkout', [CheckoutController::class, 'index']);
 //Đặt hàng
 Route::post('place-order', [CheckoutController::class, 'placeorder']);
-
 //Giỏ hàng
 Route::middleware(['auth'])-> group(function(){
-   
 //Xem đơn hàng
    Route::get('my-orders', [UserController::class, 'index']);
 //Xem chi tiết đơn hàng
@@ -86,6 +85,8 @@ Route::middleware(['auth'])-> group(function(){
 //Danh sách yêu thích
    Route::get('wishlist', [WishlistController::class, 'index']);
 });
+ // Thông tin người dùng
+Route::get('infor', [UserController::class, 'infor']);
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     //Trang chủ Admin
@@ -124,5 +125,6 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('users', [DashboardController::class, 'users']);
     //Xem thông tin User
     Route::get('view-users/{id}', [DashboardController::class, 'viewuser']);
+   
 });
 

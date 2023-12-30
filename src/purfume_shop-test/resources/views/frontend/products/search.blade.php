@@ -8,7 +8,7 @@
 <div class="py-5">
     <div class="container">
         <div class="row">
-            <h2>Kết Quả Tìm Kiếm Của "{{ $keywords }}"</h2>
+            <h2 class="chopchop text-center">Kết Quả Tìm Kiếm Của "{{ $keywords }}"</h2>
             <div class="owl-carousel featured-carousel owl-theme">
                 @if($search_product->count() > 0)
                         @foreach($search_product as $product)

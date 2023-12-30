@@ -11,7 +11,7 @@
                     Thành, P5, Trà Vinh
                 </p>
                 <p class="mb-2">
-                    <i class="bi bi-envelope-open text-primary me-2"></i>Email: perfumeshoptv@gmail.com
+                    <i class="bi bi-envelope-open text-primary me-2"></i>Gmail: perfumeshoptv@gmail.com
                 </p>
                 <p class="mb-0">
                     <i class="bi bi-telephone text-primary me-2"></i>SĐT: 03429.03416
@@ -22,18 +22,16 @@
                     Các Trang Khác
                 </h5>
                 <div class="d-flex flex-column justify-content-start">
-                    <a class="text-body mb-2" href="{{url('/')}}"><i class="bi bi-arrow-right text-primary me-2"></i>Trang
-                        Chủ</a>
-                    <a class="text-body mb-2" href="{{url('/category')}}"><i class="bi bi-arrow-right text-primary me-2"></i>Danh 
-                        Mục</a>
-                    <a class="text-body mb-2" href="phanhoi.php"><i class="bi bi-arrow-right text-primary me-2"></i>Phản
-                        hồi</a>
+                    <a class="text-body mb-2" href="{{url('/')}}"><i class="bi bi-arrow-right text-primary me-2"></i>Trang Chủ</a>
+                    <a class="text-body mb-2" href="{{url('/allprod')}}"><i class="bi bi-arrow-right text-primary me-2"></i>Sản Phẩm</a>
+                    <a class="text-body mb-2" href="{{url('/views.interact.introduce')}}"><i class="bi bi-arrow-right text-primary me-2"></i>Giới Thiệu</a>
+                    <a class="text-body mb-2" href="{{url('/views.interact.contact')}}"><i class="bi bi-arrow-right text-primary me-2"></i>Liên Hệ</a>
                 </div>
             </div>
 
             <div class="col-lg-3 col-md-6">
                 <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">
-                    Mua hàng ngay
+                    <a class="text-dark" href="/allprod">Mua hàng ngay</a>
                 </h5>
                 
                 <h6 class="text-uppercase mt-4 mb-3">Theo dõi chúng tôi tại</h6>
@@ -59,21 +57,27 @@
                       </svg>
                     </a>
                 </div>
+                <div >
+                    <br>
+                    <h6>Địa Chỉ Liên Hệ</h6>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1389.521837764677!2d106.35107766746081!3d9.920524644529944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a0191005a9e401%3A0x1e1b014e2ae55e6b!2zTmjDoCB0cuG7jSBOZ3V5w6puIFBoxrDGoW5n!5e0!3m2!1svi!2s!4v1703560871330!5m2!1svi!2s"
+                     width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
                 
             </div>
-            <!-- <div class="col-12 text-center text-body">
-            <a class="text-body" href="">Terms & Conditions</a>
-            <span class="mx-1">|</span>
-            <a class="text-body" href="">Privacy Policy</a>
-            <span class="mx-1">|</span>
-            <a class="text-body" href="">Customer Support</a>
-            <span class="mx-1">|</span>
-            <a class="text-body" href="">Payments</a>
-            <span class="mx-1">|</span>
-            <a class="text-body" href="">Help</a>
-            <span class="mx-1">|</span>
-            <a class="text-body" href="">FAQs</a>
-          </div> -->
+
+
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">
+                    Thông Tin Chuyển Khoản
+                </h5>
+                <div class="d-flex flex-column justify-content-start">
+                    <img src="{{asset('assets/images/mbbank_logo.webp')}}" alt="">
+                    <p class="bi bi-arrow-right text-center text-primary me-2">03429.03416</p>
+                </div>
+            </div>
+
+
         </div>
     </div>
 </div>

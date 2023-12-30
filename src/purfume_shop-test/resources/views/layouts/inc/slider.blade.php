@@ -16,7 +16,7 @@
       <a href="{{url('category/nuochoanu')}}"><img src="{{asset('assets/images/slide6.gif')}}" class="d-block " alt="..."></a>
     </div>
     <div class="carousel-item">
-      <a href="{{url('category/nuochoanu')}}"><img src="{{asset('assets/images/slide4.png')}}" class="d-block " alt="..."></a>
+      <a href="{{url('category/bosuutapxuanhe2024')}}"><img src="{{asset('assets/images/slide1.gif')}}" class="d-block " alt="..."></a>
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

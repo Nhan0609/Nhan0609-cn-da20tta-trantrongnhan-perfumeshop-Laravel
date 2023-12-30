@@ -14,10 +14,12 @@ class FrontendController extends Controller
     {
         $featured_products = Product::where('trending', '1')->take(15)->get();
         $trending_category = Category::where('popular','1')->take(15)->get();
+
 //Sản phẩm nhiều view
         $productsRecommend = Product::Latest('view_count', 'desc')->take(15)->get();
         
         return view('frontend.index', compact('featured_products','trending_category', 'productsRecommend'));
+        // return view('admin.index', compact('featured_products','trending_category', 'productsRecommend'));
     }
 
     public function category()
@@ -63,6 +65,12 @@ class FrontendController extends Controller
                     return redirect('/')->with('status', "Không Tìm Thấy Danh Mục");
                 }    
             }
+//Hiển thị tất cả sản phẩm
+    public function allprod()
+    {
+        $allProducts = Product::where('status', '0')->get();
+        return view('frontend.products.allprod', compact('allProducts'));
+    }
 
 //Tìm kiếm sản phẩm
     public function search(Request $request)
@@ -85,7 +93,6 @@ class FrontendController extends Controller
         return view('interact.contact');
     }
 
-
 //     public function show($id)
 // {
 //     // Tìm sản phẩm
@@ -94,7 +101,6 @@ class FrontendController extends Controller
 //     // Tăng giá trị view_count
 //     $product->increment('view_count');
 
-//     // Các sự kiện hoặc hành động khác nếu cần
 
 //     // Trả về view
 //     return view('frontend.products.show', compact('product'));

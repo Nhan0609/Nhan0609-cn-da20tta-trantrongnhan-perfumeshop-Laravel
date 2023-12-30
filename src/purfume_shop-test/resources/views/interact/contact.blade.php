@@ -20,7 +20,7 @@
                 
 
                 <div class="col-md-12 mb-5" style="text-align: center">
-                    <h2>Liên Hệ Với Website</h2>
+                    <h2 class="chopchop">Liên Hệ Với Website</h2>
                     <a href="/home"><img  src="{{asset('assets/images/logo.gif')}}" alt="Logo đầu trang"/></a>
                 </div>
 
@@ -76,12 +76,19 @@
                                         </svg>
                                     </a>
                                 </div>
+                                <div class="col-md-12 mt-5 text-center">
+                                    <h2 class="chopchop">Địa Chỉ Liên Hệ</h2>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1389.521837764677!2d106.35107766746081!3d9.920524644529944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a0191005a9e401%3A0x1e1b014e2ae55e6b!2zTmjDoCB0cuG7jSBOZ3V5w6puIFBoxrDGoW5n!5e0!3m2!1svi!2s!4v1703560871330!5m2!1svi!2s" 
+                                    width="700" height="650" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>    
                 </div>
             </div>
+
+            
         </div>
     </div>   
 

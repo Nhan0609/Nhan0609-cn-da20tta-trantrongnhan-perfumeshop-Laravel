@@ -12,10 +12,10 @@
                     <tr>
                         <th>ID</th>
                         <th>Vai Trò</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Action</th>
+                        <th>Tên</th>
+                        <th>Gmail</th>
+                        <th>Số Điện Thoại</th>
+                        <th>Xử Lý</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -13,10 +13,12 @@
       <div class="col-lg-4 text-center border-start border-end py-2">
           <div class="d-inline-flex align-items-center">
               <i class="bi bi-envelope-open fs-1 text-primary me-3"></i>
-              <div class="text-start">
-                  <a href="{{url('views.interact.contact')}}"><h6 class="text-uppercase mb-1">Liên hệ</h6></a>
-                  <span>perfumeshoptv@gmail.com</span>
-              </div>
+                <a href="{{url('views.interact.contact')}}">
+                  <div class="text-start">
+                      <h6 class="text-uppercase mb-1">Liên hệ</h6>
+                      <span>perfumeshoptv@gmail.com</span>
+                  </div>
+                </a>
           </div>
       </div>
       <div class="col-lg-4 text-center py-2">
@@ -34,7 +36,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   {{-- <div class="container"> --}}
-    <a style="padding: 15px" class="navbar-brand" href="{{ url('/categories') }}"><img  src="{{asset('assets/images/logo.gif')}}" alt="Logo đầu trang"/></a>
+    <a style="padding: 15px" class="navbar-brand" href="{{ url('/dashboard') }}"><img  src="{{asset('assets/images/logo.gif')}}" alt="Logo đầu trang"/></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -63,7 +65,7 @@
               </ul>
           </li>
       </ul> --}}
-      
+      <a class="nav-link" href="{{ url('allprod')}}">Sản phẩm</a>
       
 
         <a class="nav-link" href="{{ url('my-orders' )}}">Đơn Hàng</a>
@@ -101,7 +103,7 @@
         @if (Route::has('login'))
             <!-- <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block"> -->
                 @auth
-                <a href="#" class="nav-link active">Xin Chào, {{ Auth::user()->name }}</a>
+                <a href="{{url('infor')}}" class="nav-link active">Xin Chào, {{ Auth::user()->name }}</a>
                 <a href="{{ route('logout') }}" class="nav-link underline" 
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('Đăng Xuất') }}
