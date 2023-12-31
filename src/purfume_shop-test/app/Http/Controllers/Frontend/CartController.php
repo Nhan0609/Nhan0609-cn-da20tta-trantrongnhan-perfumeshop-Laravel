@@ -20,20 +20,28 @@ class CartController extends Controller
 
         if($prod_check)
         {
+            if ($product_qty == null || $product_qty == 0) {
+                return response()->json(['status' => "Không thể thêm do số lượng của sản phẩm ". $prod_check->name. " vượt quá số lượng hiện có."]);
+            }
+
             if(Auth::check())
             {
-                if ($product_qty == null || $product_qty == 0) {
-                    return response()->json(['status' => $prod_check->name. " đã hết hàng. Không thể thêm vào giỏ hàng."]);
-                } 
-
                 if(Cart::where('prod_id', $product_id)->where('user_id', Auth::id())->exists())
                 {
                     // Cập lại số lượng của sản phẩm đã được thêm vào giỏ hàng
                     $cart = Cart::where('prod_id', $product_id)->where('user_id', Auth::id())->first();
                     $cart -> prod_qty = intval($cart -> prod_qty) + $product_qty;
-                    $cart-> update();
 
+                    if ($cart -> prod_qty > $prod_check->qty) {
+                        return response()->json(['status' => "Không thể thêm do số lượng của sản phẩm ". $prod_check->name. " vượt quá số lượng hiện có."]);
+                    }
+                        
+                    $cart-> update();
                     return response()->json(['status' => $prod_check->name. " Đã Được Thêm Vào Giỏ Hàng"]);
+                }
+
+                if ($product_qty > $prod_check->qty) {
+                    return response()->json(['status' => "Không thể thêm do số lượng của sản phẩm ". $prod_check->name. " vượt quá số lượng hiện có."]);
                 }
 
                 $cartItem= new Cart();
@@ -53,15 +61,22 @@ class CartController extends Controller
                 if(isset($_SESSION['card'])) {
                     // Kiêm tra san phẩm đã thêm vào session card chưa
                     if (isset($_SESSION['card'][$product_id])) {
-                        $_SESSION['card'][$product_id] += $product_qty;
+                        $qtySession = $_SESSION['card'][$product_id] + $product_qty;
+                        if ($qtySession > $prod_check->qty) {
+                            return response()->json(['status' => "Không thể thêm do số lượng của sản phẩm ". $prod_check->name. " vượt quá số lượng hiện có."]);
+                        }
+
+                        $_SESSION['card'][$product_id] = $qtySession;
                         return response()->json(['status' => $prod_check->name. " Được Thêm Vào Giỏ Hàng"]);
                     }
                 } else {
+                    if ($product_qty > $prod_check->qty) {
+                        return response()->json(['status' => "Không thể thêm do số lượng của sản phẩm ". $prod_check->name. " vượt quá số lượng hiện có."]);
+                    }
                     $_SESSION['card'] = array();
                 }
 
                 $_SESSION['card'][$product_id] = $product_qty;
-
                 return response()->json(['status' => $prod_check->name. " Được Thêm Vào Giỏ Hàng"]);
             }
         }
@@ -112,15 +127,25 @@ class CartController extends Controller
                 $cart-> update();
                 return response()->json(['status'=> "Số Lượng Đã Được Cập Nhật"]);
             }
+        } 
+        else 
+        {
+            session_start();
+
+            if(isset($_SESSION['card']) && isset($_SESSION['card'][$prod_id])) {
+                $_SESSION['card'][$prod_id] = $product_qty;
+                return response()->json(['status'=> "Số Lượng Đã Được Cập Nhật"]);
+            } 
         }
     }
 
     //Xóa sản phẩm trong giỏ hàng
     public function deleteproduct(Request $request)
     {
+        $prod_id = $request->input('prod_id');
         if(Auth::check())
         {
-            $prod_id = $request->input('prod_id');
+            
             if(Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->exists())
             {
                 $cartItem = Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->first();
@@ -130,8 +155,15 @@ class CartController extends Controller
         } 
         else
         {
-            return response()->json(['status'=> "Vui Lòng Đăng nhập Để Tiếp Tục"]);
+            session_start();
+
+            if(isset($_SESSION['card']) && isset($_SESSION['card'][$prod_id])) {
+                unset($_SESSION['card'][$prod_id]);
+                return response()->json(['status'=> "Xóa Khỏi Giỏ Hàng Thành Công"]);
+            } 
+            
         }
+        return response()->json(['error'=> "Lỗi khi xóa!"]);
     }
 
     //Hiển thị số lượng sản phẩm có trong giỏ hàng

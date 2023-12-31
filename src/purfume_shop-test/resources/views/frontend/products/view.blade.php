@@ -101,7 +101,7 @@
 
                         @if($products->qty > 0)
                             
-                            <button type="button" class="btn btn-success me-3 addToCartBtn float-start">Thêm vào Giỏ Hàng <i class="fa fa-shopping-cart"></i></button>
+                            <button type="button" class="btn btn-success me-3 addToCartBtn float-start">Mua Ngay <i class="fa fa-shopping-cart"></i></button>
                             {{-- <button class="btn btn-success addToCartBtn "> <i class="fa fa-shopping-cart"></i> Thêm Vào Giỏ Hàng </button> --}}
                         
                         @endif

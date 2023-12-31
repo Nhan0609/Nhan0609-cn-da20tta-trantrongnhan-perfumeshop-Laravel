@@ -53,23 +53,21 @@ class CheckoutController extends Controller
             $cartitems = Cart::where('user_id', Auth::id())->get();
         } else {
             $user = User::create([
-    'name' => $request->input('fname'),
-    'lname' => $request->input('lname'),
-    'email' => $request->input('email'),
-    'password' => Hash::make('User123456789'),
-    'phone' => $request->input('phone'),
-    'address1' => $request->input('address1'),
-    'address2' => $request->input('address2'),
-    'city' => $request->input('city'),
-    'state' => $request->input('state'),
-    'country' => $request->input('country'),
-]);
+                'name' => $request->input('fname'),
+                'lname' => $request->input('lname'),
+                'email' => $request->input('email'),
+                'password' => Hash::make('User123456789'),
+                'phone' => $request->input('phone'),
+                'address1' => $request->input('address1'),
+                'address2' => $request->input('address2'),
+                'city' => $request->input('city'),
+                'state' => $request->input('state'),
+                'country' => $request->input('country'),
+            ]);
 
-$user_id = $user->id;
+            $user_id = $user->id;
 
-// Bây giờ $user_id chứa ID của người dùng mới được tạo
-
-
+            // Bây giờ $user_id chứa ID của người dùng mới được tạo
 
             session_start();
 

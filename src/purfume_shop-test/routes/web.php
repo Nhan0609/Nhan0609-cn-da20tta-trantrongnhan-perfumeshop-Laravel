@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\FrontendController as AdminFrontendController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
@@ -70,19 +71,19 @@ Route::post('update-cart', [CartController::class, 'updatecart']);
 Route::post('add-to-wishlist', [WishlistController::class, 'add']);
 //Xóa sản phẩm khỏi danh sách yêu thích
 Route::post('delete-wishlist-item', [WishlistController::class, 'deleteitem']);
-
+//Giỏ hàng
 Route::get('cart', [CartController::class, 'viewcart']);
 //Thanh toán
 Route::get('checkout', [CheckoutController::class, 'index']);
 //Đặt hàng
 Route::post('place-order', [CheckoutController::class, 'placeorder']);
-//Giỏ hàng
+
 Route::middleware(['auth'])-> group(function(){
-//Xem đơn hàng
+   //Xem đơn hàng
    Route::get('my-orders', [UserController::class, 'index']);
-//Xem chi tiết đơn hàng
+   //Xem chi tiết đơn hàng
    Route::get('view-order/{id}', [UserController::class, 'view']);
-//Danh sách yêu thích
+   //Danh sách yêu thích
    Route::get('wishlist', [WishlistController::class, 'index']);
 });
  // Thông tin người dùng
@@ -90,7 +91,7 @@ Route::get('infor', [UserController::class, 'infor']);
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     //Trang chủ Admin
-    Route::get('/dashboard', [FrontendController::class, 'index']);
+    Route::get('dashboard', [AdminFrontendController::class, 'index']);
     //Category
     Route::get('categories', [CategoryController::class, 'index']);
     // Thêm 

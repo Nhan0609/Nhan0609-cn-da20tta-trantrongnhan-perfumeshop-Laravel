@@ -72,10 +72,26 @@
                                         @csrf
                                         @method('PUT')
                                         <select class="form-select" name="order_status" >
+                                            @if($orders->status == '0')
                                             <option {{ $orders->status == '0'? 'selected':'' }} value="0"> Chưa Xử Lý </option>
+                                            @endif
+
+                                            @if($orders->status != '2' && $orders->status != '-1')
                                             <option {{ $orders->status == '1'? 'selected':'' }} value="1"> Đang Giao Hàng </option>
+                                            @endif
+
+                                            @if($orders->status != '0' && $orders->status != '-1')
+                                            <option {{ $orders->status == '2'? 'selected':'' }} value="2"> Đã Giao Hàng </option>
+                                            @endif
+
+                                            @if($orders->status != '2')
+                                            <option {{ $orders->status == '-1'? 'selected':'' }} value="-1"> Hủy đơn hàng </option>
+                                            @endif
                                         </select>
+                                        
+                                        @if($orders->status != '2' && $orders->status != '-1')
                                         <button type="submit" class="btn btn-primary float-end mt-3"> Cập Nhật </button>
+                                        @endif
                                     </form>
                                 </div>
                             </div>

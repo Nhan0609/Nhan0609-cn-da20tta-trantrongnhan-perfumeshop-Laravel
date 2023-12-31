@@ -51,7 +51,7 @@
                             <input type="hidden" class="prod_id" value="{{ $item->prod_id }}">
 
                             @if($item->products->qty > 0)
-                                <h6>Còn Hàng</h6>
+                                <h6>{{$item->products->qty}}</h6>
                                 <label for="Quantity" hidden> Số lượng </label>
                             <div class="input-group text-center mb-3" hidden style="width: 130px;">
                                 <button class="input-group-text decrement-btn"> - </button>

@@ -25,12 +25,12 @@ class AdminMiddleware
             }
             else
             {
-                return redirect('/home')->with('status','Chức Năng Này Chỉ Dành Cho Admin');
+                return redirect('/home');
             }
         }
         else
         {
-            return redirect('/home')->with('status','Please Login First');
+            return redirect('/home')->with('status','Vui lòng đăng nhập!');
         }
     }
 }
