@@ -38,11 +38,16 @@ Route::get('/views.interact.contact', [FrontendController::class, 'viewcontact']
 
 
 //Frontend
+//Trang chủ
 Route::get('/', [FrontendController::class, 'index']);
+//Danh mục
 Route::get('category',[FrontendController::class, 'category']);
+//Xem danh mục
 Route::get('category/{slug}', [FrontendController::class, 'viewcategory']);
 //Hiển thị sản phẩm có view cao
 Route::get('category/{cate_slug}/{prod_slug}',[FrontendController::class, 'productview']);
+//Hiển thị sản phẩm mới cập nhật
+// Route::get('newProducts', [FrontendController::class, 'newProducts']);
 //Tìm kiếm sản phẩm
 Route::post('timkiem', [FrontendController::class, 'search']);
 //Hiển thị tất cả sản phẩm
@@ -77,6 +82,8 @@ Route::get('cart', [CartController::class, 'viewcart']);
 Route::get('checkout', [CheckoutController::class, 'index']);
 //Đặt hàng
 Route::post('place-order', [CheckoutController::class, 'placeorder']);
+//Thanh toán bằng VNpay
+Route::post('/vnpay', [CheckoutController::class,'vnpay']);
 
 Route::middleware(['auth'])-> group(function(){
    //Xem đơn hàng

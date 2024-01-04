@@ -11,6 +11,31 @@
     <div class="py-5">
         <div class="container">
             <div class="row">
+                <h2>Sản Phẩm Mới</h2>
+                <div class="owl-carousel featured-carousel owl-theme">
+                    @foreach($newProducts as $prod)
+                        <div class="item">
+                            <a href="{{ url('category/'.$prod->category->slug.'/'.$prod->slug) }}">
+                                <div class="card">
+                                    <img src="{{ asset('assets/uploads/products/'.$prod->image) }}" alt="Ảnh Sản Phẩm">
+                                    <div class="card-body">
+                                        <h5>{{ $prod->name }}</h5>
+                                        <span class="float-start">{{ number_format($prod->selling_price) }} VNĐ</span> 
+                                        <span class="float-end"> <s> {{ number_format($prod->original_price) }} VNĐ </s> </span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div> 
+                    @endforeach
+                </div> 
+            </div>
+        </div>
+    </div>
+
+
+    <div class="py-5">
+        <div class="container">
+            <div class="row">
                 <h2>Danh Mục Thịnh Hành</h2>
                 <div class="owl-carousel featured-carousel owl-theme">
                     @foreach($trending_category as $tcategory)
@@ -56,6 +81,8 @@
             </div>
         </div>
     </div>
+
+        
     
     <div class="py-5">
         <div class="container">

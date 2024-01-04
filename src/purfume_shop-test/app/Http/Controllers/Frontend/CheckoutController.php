@@ -48,6 +48,7 @@ class CheckoutController extends Controller
 
     public function placeorder(Request $request)
     {
+
         if (Auth::check()) {
             $user_id = Auth::id();
             $cartitems = Cart::where('user_id', Auth::id())->get();
@@ -83,6 +84,18 @@ class CheckoutController extends Controller
 
         }
 
+        //Tổng tiền sau khi đặt hàng
+        $total = 0;
+        foreach($cartitems as $prod)
+        {
+            $total += $prod->products->selling_price * $prod->prod_qty;
+        }
+
+        // hinh thuc thanh toan onl
+        // vnpay();
+
+
+        // sau khi thanh toan thanh cong
         $order = new Order();
         $order->user_id = $user_id;
         $order->fname = $request->input('fname');
@@ -95,19 +108,8 @@ class CheckoutController extends Controller
         $order->state = $request->input('state');
         $order->country = $request->input('country');
         $order->pincode = $request->input('pincode');
-
-
-
-        //Tổng tiền sau khi đặt hàng
-        $total = 0;
-        foreach($cartitems as $prod)
-        {
-            $total += $prod->products->selling_price * $prod->prod_qty;
-        }
-        $order->total_price = $total;
-        
-        //Kết thúc tính tổng tiền sau khi đặt hàng
-        $order->tracking_no = 'user'.rand(1111,9999);
+        $order->total_price = $total; 
+        $order->tracking_no = 'user'.rand(1111,9999);   //Kết thúc tính tổng tiền sau khi đặt hàng
         $order->save();
 
         foreach($cartitems as $item)
@@ -150,5 +152,90 @@ class CheckoutController extends Controller
             return redirect('/')-> with('status', "Đặt Hàng Thành Công. Vui Lòng Đăng Nhập Để Theo Dõi Đơn Hàng. Tên đăng nhập: ".$request->input('email').". Mật khẩu mặc định: User123456789.");
         }
 
+    }
+
+
+    //Thanh toán VNPAY
+    public function vnpay()
+    {
+        $vnp_TxnRef = time() . '_' . rand(1000, 9999);
+
+        // Thông tin đơn hàng
+        $vnp_OrderInfo = 'Thanh toán đơn hàng';
+        $vnp_OrderType = 'billpayment';
+
+        // Lấy tổng tiền từ giỏ hàng
+        $totalAmount = 100000;
+        // TODO: Thêm định nghĩa hoặc import cho đối tượng Cart
+        // $total_price = Order::total_price();
+        // foreach ($total_price as $v_content) {
+        //     $totalAmount += $v_content->price * $v_content->qty;
+        // }
+
+        // Chuyển đổi tổng tiền thành đơn vị tiền tệ của VNPAY (VND)
+        $vnp_Amount = $totalAmount * 100;
+
+        // Thông tin thanh toán
+        $vnp_Locale = 'vn';
+        $vnp_BankCode = 'NCB';
+        $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
+
+        // TODO: Định nghĩa $vnp_TmnCode và $vnp_HashSecret
+        $vnp_TmnCode = "NINXYELP";
+        $vnp_HashSecret = "AIETPJHOVHILFFJPZHPGRDQSRWULXSRH";
+
+        $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html"; // TODO: Đặt giá trị chính xác từ VNPAY
+        $vnp_Returnurl = "http://127.0.0.1:8000/"; // TODO: Đặt giá trị chính xác từ VNPAY
+
+        // Các tham số thanh toán
+        $inputData = array(
+            "vnp_Version" => "2.1.0",
+            "vnp_TmnCode" => $vnp_TmnCode,
+            "vnp_Amount" => $vnp_Amount,
+            "vnp_Command" => "pay",
+            "vnp_CreateDate" => date('YmdHis'),
+            "vnp_CurrCode" => "VND",
+            "vnp_IpAddr" => $vnp_IpAddr,
+            "vnp_Locale" => $vnp_Locale,
+            "vnp_OrderInfo" => $vnp_OrderInfo,
+            "vnp_OrderType" => $vnp_OrderType,
+            "vnp_ReturnUrl" => $vnp_Returnurl,
+            "vnp_TxnRef" => $vnp_TxnRef,
+        );
+
+        ksort($inputData);
+        $query = "";
+        $i = 0;
+        $hashdata = "";
+
+        foreach ($inputData as $key => $value) {
+            if ($i == 1) {
+                $hashdata .= '&' . urlencode($key) . "=" . urlencode($value);
+            } else {
+                $hashdata .= urlencode($key) . "=" . urlencode($value);
+                $i = 1;
+            }
+            $query .= urlencode($key) . "=" . urlencode($value) . '&';
+        }
+
+        $vnp_Url = $vnp_Url . "?" . $query;
+
+        if (isset($vnp_HashSecret)) {
+            $vnpSecureHash = hash_hmac('sha512', $hashdata, $vnp_HashSecret);
+            $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
+        }
+
+        $returnData = array(
+            'code' => '00',
+            'message' => 'success',
+            'data' => $vnp_Url
+        );
+
+        if (isset($_POST['redirect'])) {
+            header('Location: ' . $vnp_Url);
+            die();
+        } else {
+            echo json_encode($returnData);
+        }
     }
 }

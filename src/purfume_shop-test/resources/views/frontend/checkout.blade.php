@@ -213,12 +213,31 @@
                             {{-- Tổng thanh toán --}}
                             @if ($total > 0)
                                 <div>Tổng Thanh Toán: <b> {{ number_format($total) }} VNĐ </b> </div>
-                            @endif
-                            <button type="submit" class="btn btn-primary float-end">Đặt Hàng</button>
+                            @endif 
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary mt-5 float-end">Thanh Toán</button>
+                                </div>
+                                <div class="col-md-12">
+                                    {{-- <button type="submit" class="btn btn-warning mt-3 float-end">Thanh Toán VNPAY</button> --}}
+                                    {{-- <a class="btn btn-warning float-end mt-3 text-white" href="{{url('vnpay')}}">Thanh Toán VNPAY</a> --}}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
+            </div>
+        </form>
+        
+        <form action="{{ url('/vnpay') }}" method="POST">
+            <div class="vnpay-btn">
+                @csrf
+                <input type="text" name="order_id" type="hidden" hidden value="123456">
+                <input type="text" name="order_desc" type="hidden"hidden value="Product Description">
+                <button type="submit" name="redirect"
+                    class="btn btn-primary btn-order float-end " style="position: relative; top: -280px; left: -15px">
+                    Thanh toán VNPAY
+                </button>
             </div>
         </form>
     </div>

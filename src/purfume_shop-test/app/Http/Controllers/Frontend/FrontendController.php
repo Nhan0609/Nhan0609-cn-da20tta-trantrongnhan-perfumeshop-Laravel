@@ -12,14 +12,18 @@ class FrontendController extends Controller
 {
     public function index()
     {
+        //Hiển thị sản phẩm thịnh hành
         $featured_products = Product::where('trending', '1')->take(15)->get();
+        //Hiển thị danh mục thịnh hành
         $trending_category = Category::where('popular','1')->take(15)->get();
-
-        //Sản phẩm nhiều view
+        //Hiển thị Sản phẩm nhiều view
         $productsRecommend = Product::Latest('view_count', 'desc')->take(15)->get();
+        //Hiển thị sản phẩm mới cập nhật
+        $newProducts = Product::orderBy('id', 'desc')->take(6)->get();
         
-        return view('frontend.index', compact('featured_products','trending_category', 'productsRecommend'));
+        return view('frontend.index', compact('featured_products','trending_category', 'productsRecommend','newProducts'));
     }
+    
 
     public function category()
     {
@@ -64,6 +68,7 @@ class FrontendController extends Controller
                     return redirect('/')->with('status', "Không Tìm Thấy Danh Mục");
                 }    
             }
+
 //Hiển thị tất cả sản phẩm
     public function allprod()
     {
