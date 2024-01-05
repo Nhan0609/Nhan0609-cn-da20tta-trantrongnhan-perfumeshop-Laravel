@@ -91,7 +91,7 @@
                 @else
                     <div class="card-body text-center">
                         <h2> Chưa Thêm Sản Phẩm Nào Vào Giỏ Hàng</h2>
-                        <a href="{{ url('category') }}" class="btn btn-outline-primary float-end"> Mua Sắm Ngay</a>
+                        <a href="{{ url('allprod') }}" class="btn btn-outline-primary float-end"> Mua Sắm Ngay</a>
                     </div>
 
                 @endif

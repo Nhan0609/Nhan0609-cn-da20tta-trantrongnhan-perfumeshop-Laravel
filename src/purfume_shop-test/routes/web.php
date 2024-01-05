@@ -82,8 +82,8 @@ Route::get('cart', [CartController::class, 'viewcart']);
 Route::get('checkout', [CheckoutController::class, 'index']);
 //Đặt hàng
 Route::post('place-order', [CheckoutController::class, 'placeorder']);
-//Thanh toán bằng VNpay
-Route::post('/vnpay', [CheckoutController::class,'vnpay']);
+//Xu ly ket qua tra ve cua API Pay
+Route::get('return-payment', [CheckoutController::class, 'returnPayment']);
 
 Route::middleware(['auth'])-> group(function(){
    //Xem đơn hàng

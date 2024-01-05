@@ -20,16 +20,19 @@ class FrontendController extends Controller
         $productsRecommend = Product::Latest('view_count', 'desc')->take(15)->get();
         //Hiển thị sản phẩm mới cập nhật
         $newProducts = Product::orderBy('id', 'desc')->take(6)->get();
-        
-        return view('frontend.index', compact('featured_products','trending_category', 'productsRecommend','newProducts'));
+        //Hiển thị sản phẩm khác
+        $productbodycare = Product::where('cate_id', 5)->get();
+
+        return view('frontend.index', compact('featured_products','trending_category', 'productsRecommend','newProducts','productbodycare'));
     }
     
 
     public function category()
     {
-        $category = Category::where('status', '0')->get();
+        $category = Category::all();
         return view('frontend.category', compact('category'));
     }
+
 
 //Hiển thị danh mục hot
     public function viewcategory($slug)

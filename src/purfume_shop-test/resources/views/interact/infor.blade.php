@@ -98,15 +98,15 @@
                         
                         <label>Mật Khẩu Hiện Tại</label>
                         <div class="form-group pass_show"> 
-                            <input type="password" value="" class="form-control" placeholder="Mật Khẩu Hiện Tại"> 
+                            <input type="password" value="" class="form-control" style="font-size: 15px" placeholder="Nhập mật khẩu hiện tại"> 
                         </div> 
                         <label>Mật Khẩu Mới</label>
                         <div class="form-group pass_show"> 
-                            <input type="password" value="" class="form-control" placeholder="Mật Khẩu Mới"> 
+                            <input type="password" value="" class="form-control" style="font-size: 15px" placeholder="Nhập mật khẩu mới"> 
                         </div> 
                         <label>Nhập Lại Mật Khẩu</label>
                         <div class="form-group pass_show"> 
-                            <input type="password" value="" class="form-control" placeholder="Nhập Lại Mật Khẩu"> 
+                            <input type="password" value="" class="form-control" style="font-size: 15px" placeholder="Xác nhận mật khẩu mới"> 
                         </div> 
                         
                     </div>  

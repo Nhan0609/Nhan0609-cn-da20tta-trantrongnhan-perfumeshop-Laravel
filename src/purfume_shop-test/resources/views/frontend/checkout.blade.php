@@ -216,11 +216,18 @@
                             @endif 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary mt-5 float-end">Thanh Toán</button>
+                                    <div class="col-md-6 mt-3">
+                                        <label for="payment_type">Hinh thuc thanh toan</label>
+                                        <select class="form-control" name="payment_type">
+                                            <option value="COD">Thanh toan tiem mat</option>
+                                            <option value="VNP">Vi VN Pay</option>
+                                        </select>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-12">
-                                    {{-- <button type="submit" class="btn btn-warning mt-3 float-end">Thanh Toán VNPAY</button> --}}
-                                    {{-- <a class="btn btn-warning float-end mt-3 text-white" href="{{url('vnpay')}}">Thanh Toán VNPAY</a> --}}
+                                    <button type="submit" class="btn btn-primary mt-5 float-end">Thanh Toán</button>
                                 </div>
                             </div>
                         </div>
@@ -228,18 +235,7 @@
                 </div>
             </div>
         </form>
-        
-        <form action="{{ url('/vnpay') }}" method="POST">
-            <div class="vnpay-btn">
-                @csrf
-                <input type="text" name="order_id" type="hidden" hidden value="123456">
-                <input type="text" name="order_desc" type="hidden"hidden value="Product Description">
-                <button type="submit" name="redirect"
-                    class="btn btn-primary btn-order float-end " style="position: relative; top: -280px; left: -15px">
-                    Thanh toán VNPAY
-                </button>
-            </div>
-        </form>
+
     </div>
     @include('layouts.inc.footer')
 @endsection

@@ -112,12 +112,22 @@
                     </div>
                     </div>
                     
-                    <div class="col-md-4">
+                    {{-- <div class="col-md-12">
                        <h3> Chi Tiết Sản Phẩm</h3>
                         {!! $products->description !!}
 
                         
-                    </div>
+                    </div> --}}
+
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-left: 140px;">
+                            Chi tiết sản Phẩm
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><span class="dropdown-item-text">{!! $products->description !!}</span></li>
+                            
+                            </ul>
+                        </div>
 
                 </div>
             </div>

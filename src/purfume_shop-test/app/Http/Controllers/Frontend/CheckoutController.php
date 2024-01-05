@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Hash;
 
 class CheckoutController extends Controller
 {
+
+    private $password_default = 'User123456789';
+
     public function index()
     {
         if (Auth::check()) {
@@ -48,29 +51,98 @@ class CheckoutController extends Controller
 
     public function placeorder(Request $request)
     {
+        session_start();
+
+        if (Auth::check()) {
+            $cartitems = Cart::where('user_id', Auth::id())->get();
+        } else {
+            $cartitems = array();
+            if(isset($_SESSION['card'])) {
+                foreach($_SESSION['card'] as $prod_id=>$prod_qty) {
+                    $cartItem= new Cart();
+                    $cartItem-> prod_id = $prod_id;
+                    $cartItem-> prod_qty = $prod_qty;
+                    $cartitems[] = $cartItem;
+                }
+            }
+        }
+        
+        //Tổng tiền sau khi đặt hàng
+        $total = 0;
+        foreach($cartitems as $prod)
+        {
+            $total += $prod->products->selling_price * $prod->prod_qty;
+        }
+        $_SESSION['total'] = $total;
+
+        // Đưa thông tin Request lên Session
+        $user = new User();
+        $user->name = $request->input('fname');
+        $user->lname = $request->input('lname');
+        $user->email = $request->input('email');
+        $user->password = Hash::make($this->password_default);
+        $user->phone = $request->input('phone');
+        $user->address1 = $request->input('address1');
+        $user->address2 = $request->input('address2');
+        $user->city = $request->input('city');
+        $user->state = $request->input('state');
+        $user->country = $request->input('country');
+        
+        $_SESSION['request_user'] = $user;
+
+        switch($request->input('payment_type')) {
+            case 'COD':
+                $return_url = 'http://127.0.0.1:8000/return-payment?cod_ResponseCode=00';
+                header('Location: ' . $return_url);
+                die();
+                break;
+
+            // Thanh toán qua vnpay
+            case 'VNP':
+                $this->vnpay($total);
+                break;
+
+            default:
+                unset($_SESSION['request_user']);
+                unset($_SESSION['total']);
+                return redirect('/checkout')-> with('status', 'Có lỗi xảy ra. Vui lòng thử lại.');
+        }
+    }
+
+    // Xử lý thông tin đơn hàng và thông tin User giao hàng (Trả về tên tài khoản đơn hàng)
+    private function handleInvoice()
+    {
+        session_start();
+
+        $user = new User();
+        $user = $_SESSION['request_user'];
 
         if (Auth::check()) {
             $user_id = Auth::id();
             $cartitems = Cart::where('user_id', Auth::id())->get();
-        } else {
-            $user = User::create([
-                'name' => $request->input('fname'),
-                'lname' => $request->input('lname'),
-                'email' => $request->input('email'),
-                'password' => Hash::make('User123456789'),
-                'phone' => $request->input('phone'),
-                'address1' => $request->input('address1'),
-                'address2' => $request->input('address2'),
-                'city' => $request->input('city'),
-                'state' => $request->input('state'),
-                'country' => $request->input('country'),
-            ]);
 
-            $user_id = $user->id;
+            // Cập nhập thông tin user
+            if (Auth::user()->address1 == NULL)
+            {
+                $user = User::where('id', Auth::id())->first();
+
+                $user->name = $user->lname;
+                $user->phone = $user->phone;
+                $user->address1 = $user->address1;
+                $user->address2 = $user->address2;
+                $user->city = $user->city;
+                $user->state = $user->state;
+                $user->country = $user->country;
+                $user->pincode = $user->pincode;
+                $user-> update();
+            }
+
+            $message = "Đặt Hàng Thành Công";
+        } else {
 
             // Bây giờ $user_id chứa ID của người dùng mới được tạo
-
-            session_start();
+            $user->save();
+            $user_id = $user->id;
 
             $cartitems = array();
             if(isset($_SESSION['card'])) {
@@ -82,36 +154,27 @@ class CheckoutController extends Controller
                 }
             }
 
+            $message = "Đặt Hàng Thành Công. Vui Lòng Đăng Nhập Để Theo Dõi Đơn Hàng. Tên đăng nhập: ".$user->email.". Mật khẩu mặc định: ". $this->password_default;
         }
 
-        //Tổng tiền sau khi đặt hàng
-        $total = 0;
-        foreach($cartitems as $prod)
-        {
-            $total += $prod->products->selling_price * $prod->prod_qty;
-        }
-
-        // hinh thuc thanh toan onl
-        // vnpay();
-
-
-        // sau khi thanh toan thanh cong
+        // Save invoice
         $order = new Order();
         $order->user_id = $user_id;
-        $order->fname = $request->input('fname');
-        $order->lname = $request->input('lname');
-        $order->email = $request->input('email');
-        $order->phone = $request->input('phone');
-        $order->address1 = $request->input('address1');
-        $order->address2 = $request->input('address2');
-        $order->city = $request->input('city');
-        $order->state = $request->input('state');
-        $order->country = $request->input('country');
-        $order->pincode = $request->input('pincode');
-        $order->total_price = $total; 
+        $order->fname = $user->name;
+        $order->lname = $user->lname;
+        $order->email = $user->email;
+        $order->phone = $user->phone;
+        $order->address1 = $user->address1;
+        $order->address2 = $user->address2;
+        $order->city = $user->city;
+        $order->state = $user->state;
+        $order->country = $user->country;
+        $order->pincode = $user->pincode;
+        $order->total_price = $_SESSION['total']; 
         $order->tracking_no = 'user'.rand(1111,9999);   //Kết thúc tính tổng tiền sau khi đặt hàng
         $order->save();
 
+        // Xử lý sản phẩm theo đơn hàng
         foreach($cartitems as $item)
         {
             OrderItem::create([
@@ -126,38 +189,45 @@ class CheckoutController extends Controller
             $prod-> update();
         }
 
-        if(Auth::check()){
-            if (Auth::user()->address1 == NULL)
-            {
-                $user = User::where('id', Auth::id())->first();
-
-                $user->name = $request->input('lname');
-                $user->phone = $request->input('phone');
-                $user->address1 = $request->input('address1');
-                $user->address2 = $request->input('address2');
-                $user->city = $request->input('city');
-                $user->state = $request->input('state');
-                $user->country = $request->input('country');
-                $user->pincode = $request->input('pincode');
-
-                $user-> update();
-            }
-            $cartitems = Cart::where('user_id', Auth::id())->get();
-            Cart::destroy($cartitems);
-
-            return redirect('/')-> with('status', "Đặt Hàng Thành Công");
-        } else {
-            unset($_SESSION['card']);
-
-            return redirect('/')-> with('status', "Đặt Hàng Thành Công. Vui Lòng Đăng Nhập Để Theo Dõi Đơn Hàng. Tên đăng nhập: ".$request->input('email').". Mật khẩu mặc định: User123456789.");
-        }
-
+        return $message;
     }
 
-
-    //Thanh toán VNPAY
-    public function vnpay()
+    // Function xử lý kết quả trả về của API pay    
+    public function returnPayment(Request $request) 
     {
+        if (str_contains($request, 'vnp_')) {
+            $response_code = $request->vnp_ResponseCode;
+        } else if (str_contains($request, 'cod_')) {
+            $response_code = $request->cod_ResponseCode;
+        }
+
+        // Trường hợp pay tră về thành công
+        if($response_code == "00") {
+            $message = $this->handleInvoice();
+
+            unset($_SESSION['request_user']);
+            unset($_SESSION['total']);
+
+            if(Auth::check()){
+                $cartitems = Cart::where('user_id', Auth::id())->get();
+                Cart::destroy($cartitems);
+            } else {
+                unset($_SESSION['card']);
+            }
+
+            return redirect('/home')-> with('status', $message);
+        }
+
+        // Trường hợp pay Hủy xử lý hoặc xử lý thất bại
+        unset($_SESSION['request_user']);
+        unset($_SESSION['total']);
+        return redirect('/checkout');
+    }
+
+    //Thanh toán VNPAYtotalkto
+    private function vnpay($total_price)
+    {
+
         $vnp_TxnRef = time() . '_' . rand(1000, 9999);
 
         // Thông tin đơn hàng
@@ -165,7 +235,7 @@ class CheckoutController extends Controller
         $vnp_OrderType = 'billpayment';
 
         // Lấy tổng tiền từ giỏ hàng
-        $totalAmount = 100000;
+        $totalAmount = $total_price;
         // TODO: Thêm định nghĩa hoặc import cho đối tượng Cart
         // $total_price = Order::total_price();
         // foreach ($total_price as $v_content) {
@@ -185,7 +255,7 @@ class CheckoutController extends Controller
         $vnp_HashSecret = "AIETPJHOVHILFFJPZHPGRDQSRWULXSRH";
 
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html"; // TODO: Đặt giá trị chính xác từ VNPAY
-        $vnp_Returnurl = "http://127.0.0.1:8000/"; // TODO: Đặt giá trị chính xác từ VNPAY
+        $vnp_Returnurl = "http://127.0.0.1:8000/return-payment"; // TODO: Đặt giá trị chính xác từ VNPAY
 
         // Các tham số thanh toán
         $inputData = array(
@@ -225,17 +295,8 @@ class CheckoutController extends Controller
             $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
         }
 
-        $returnData = array(
-            'code' => '00',
-            'message' => 'success',
-            'data' => $vnp_Url
-        );
-
-        if (isset($_POST['redirect'])) {
-            header('Location: ' . $vnp_Url);
-            die();
-        } else {
-            echo json_encode($returnData);
-        }
+        header('Location: ' . $vnp_Url);
+        die();
     }
+
 }
