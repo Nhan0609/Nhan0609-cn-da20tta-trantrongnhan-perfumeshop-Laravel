@@ -216,11 +216,17 @@
                             @endif 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="col-md-6 mt-3">
-                                        <label for="payment_type">Hinh thuc thanh toan</label>
-                                        <select class="form-control" name="payment_type">
+                                    <div class="col-md-7 mt-3">
+                                        {{-- <label class="float-end mb-2" for="payment_type">Hình Thức Thanh Toán</label>
+                                        <select class="form-control float-end" name="payment_type">
                                             <option value="COD">Thanh toan tiem mat</option>
                                             <option value="VNP">Vi VN Pay</option>
+                                        </select> --}}
+                                        <label class="mt-3" for="payment_type"><b>Hình Thức Thanh Toán</b></label>
+                                        <select class="form-select mt-1" aria-label="Default select example" name="payment_type">
+                                            {{-- <option selected>Chọn Hình Thức Thanh Toán</option> --}}
+                                            <option value="COD">Thanh Toán Khi Nhận Hàng</option>
+                                            <option value="VNP">Thanh Toán Bằng Ví VNPAY</option>
                                         </select>
                                     </div>
                                 </div>

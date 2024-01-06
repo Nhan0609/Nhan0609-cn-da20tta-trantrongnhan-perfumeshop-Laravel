@@ -92,6 +92,7 @@ class CheckoutController extends Controller
 
         switch($request->input('payment_type')) {
             case 'COD':
+                $_SESSION['payment_type'] = 'COD';
                 $return_url = 'http://127.0.0.1:8000/return-payment?cod_ResponseCode=00';
                 header('Location: ' . $return_url);
                 die();
@@ -99,6 +100,7 @@ class CheckoutController extends Controller
 
             // Thanh toán qua vnpay
             case 'VNP':
+                $_SESSION['payment_type'] = 'VNP';
                 $this->vnpay($total);
                 break;
 
@@ -110,7 +112,7 @@ class CheckoutController extends Controller
     }
 
     // Xử lý thông tin đơn hàng và thông tin User giao hàng (Trả về tên tài khoản đơn hàng)
-    private function handleInvoice()
+    private function handleInvoice($transaction_no)
     {
         session_start();
 
@@ -157,6 +159,15 @@ class CheckoutController extends Controller
             $message = "Đặt Hàng Thành Công. Vui Lòng Đăng Nhập Để Theo Dõi Đơn Hàng. Tên đăng nhập: ".$user->email.". Mật khẩu mặc định: ". $this->password_default;
         }
 
+        $status = 0;
+        if (isset($_SESSION['payment_type'])) 
+        {
+            if ($_SESSION['payment_type'] != null && $_SESSION['payment_type'] != 'COD') 
+            {
+                $status = 3;
+            }
+        }
+
         // Save invoice
         $order = new Order();
         $order->user_id = $user_id;
@@ -171,7 +182,9 @@ class CheckoutController extends Controller
         $order->country = $user->country;
         $order->pincode = $user->pincode;
         $order->total_price = $_SESSION['total']; 
-        $order->tracking_no = 'user'.rand(1111,9999);   //Kết thúc tính tổng tiền sau khi đặt hàng
+        $order->status = $status;
+        $order->message = isset($_SESSION['payment_type']) ? $_SESSION['payment_type'] : null;
+        $order->tracking_no = $transaction_no;   //Kết thúc tính tổng tiền sau khi đặt hàng
         $order->save();
 
         // Xử lý sản phẩm theo đơn hàng
@@ -197,16 +210,19 @@ class CheckoutController extends Controller
     {
         if (str_contains($request, 'vnp_')) {
             $response_code = $request->vnp_ResponseCode;
+            $transaction_no = $request->vnp_TransactionNo;  // Mã giao dịch của vnpay
         } else if (str_contains($request, 'cod_')) {
             $response_code = $request->cod_ResponseCode;
+            $transaction_no = 'user'.rand(1111,9999);
         }
 
         // Trường hợp pay tră về thành công
         if($response_code == "00") {
-            $message = $this->handleInvoice();
+            $message = $this->handleInvoice($transaction_no);
 
             unset($_SESSION['request_user']);
             unset($_SESSION['total']);
+            unset($_SESSION['payment_type']);
 
             if(Auth::check()){
                 $cartitems = Cart::where('user_id', Auth::id())->get();
@@ -221,6 +237,7 @@ class CheckoutController extends Controller
         // Trường hợp pay Hủy xử lý hoặc xử lý thất bại
         unset($_SESSION['request_user']);
         unset($_SESSION['total']);
+        unset($_SESSION['payment_type']);
         return redirect('/checkout');
     }
 

@@ -133,6 +133,10 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('users', [DashboardController::class, 'users']);
     //Xem thông tin User
     Route::get('view-users/{id}', [DashboardController::class, 'viewuser']);
-   
+   //Hiển thị form tra cứu doanh thu
+   Route::get('/revenue-form', [DashboardController::class, 'form']);
+   //Tra cứu doanh thu
+   Route::post('/revenue-search', [DashboardController::class, 'search'])->name('revenue-search');
+
 });
 

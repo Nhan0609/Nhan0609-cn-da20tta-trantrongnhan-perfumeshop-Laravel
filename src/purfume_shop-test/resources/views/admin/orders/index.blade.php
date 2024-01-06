@@ -22,6 +22,7 @@
                                     <th>Tracking Number</th>
                                     <th>Tổng Tiền</th>
                                     <th>Trạng Thái</th>
+                                    <th>Hình Thức Thanh Toán</th>
                                     <th>Xử Lý</th>
                                 </tr>
                             </thead>
@@ -32,7 +33,27 @@
                                         <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
                                         <td>{{ $item->tracking_no }}</td>
                                         <td>{{ number_format($item->total_price) }} VNĐ </td>
-                                        <td> Chưa Xử Lý
+                                        <td> 
+                                            @if ($item->status == '0') 
+                                                Chưa Xử Lý
+                                            @elseif ($item->status == '3') 
+                                                Đã Thanh Toán
+                                            @elseif ($item->status == '1') 
+                                                Đang Giao Hàng
+                                            @elseif ($item->status == '2') 
+                                                Đã Giao Hàng
+                                            @elseif ($item->status == '-1') 
+                                                Đã Hủy
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($item->message == 'COD') 
+                                                Thanh Toán Khi Nhận Hàng
+                                            @elseif ($item->message == 'VNP') 
+                                                Thanh Toán Qua Ví VNPay
+                                            @else 
+                                                Thanh Toán Khi Nhận Hàng
+                                            @endif
                                         </td>
                                         <td>
                                             <a href="{{ url('admin/view-order/'.$item->id)}}" class="btn btn-primary">Xem</a>

@@ -84,7 +84,7 @@
                     @if($products->qty > 0)
                         <label class="bagde bg-success text-white">Còn Hàng</label>
                     @else
-                        <label class="bagde bg-danger">Hết Hàng</label>
+                        <label class="bagde bg-danger text-white">Hết Hàng</label>
                     @endif
                     <div class="row mt-2">
                         <div class="col-md-3">

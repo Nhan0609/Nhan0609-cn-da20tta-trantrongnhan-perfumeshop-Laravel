@@ -33,11 +33,15 @@
                                         <td>{{ $item->tracking_no }}</td>
                                         <td>{{ number_format($item->total_price) }} VNĐ </td>
                                         <td>
-                                            @if ($item->status == '1') 
+                                            @if ($item->status == '0') 
+                                                Chưa Xử Lý
+                                            @elseif ($item->status == '3') 
+                                                Đã Thanh Toán
+                                            @elseif ($item->status == '1') 
                                                 Đang Giao Hàng
                                             @elseif ($item->status == '2') 
                                                 Đã Giao Hàng
-                                            @else
+                                            @elseif ($item->status == '-1') 
                                                 Đã Hủy
                                             @endif
                                         </td>

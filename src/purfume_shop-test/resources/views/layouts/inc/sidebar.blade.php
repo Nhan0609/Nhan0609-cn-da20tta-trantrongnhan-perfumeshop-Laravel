@@ -15,6 +15,14 @@
               <p>Dashboard</p>
             </a>
           </li>
+
+          <li class="nav-item {{ Request::is('revenue-form') ? 'active':'' }}">
+            <a class="nav-link" href="{{ url('revenue-form') }}">
+              <i class="material-icons">dashboard</i>
+              <p>Tra Cứu Doanh Thu</p>
+            </a>
+          </li>
+
           <li class="nav-item {{ Request::is('categories') ? 'active':'' }}">
             <a class="nav-link"S href="{{ url('categories') }}">
               <i class="material-icons">person</i>

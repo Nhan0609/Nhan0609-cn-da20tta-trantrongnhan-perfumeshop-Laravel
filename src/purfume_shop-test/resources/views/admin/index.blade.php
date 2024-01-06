@@ -1,11 +1,14 @@
 @extends('layouts.admin')
 
 @section('content')
+
 <div class="card">
     <div class="card-header">
         <h4>Trang Chủ</h4>
         <hr>
     </div>
+
+    
     <div class="card-body">
         <table class="table table-bordered table-striped">
             <thead>

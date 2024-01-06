@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-header bg-primary">
                         <h4 class="text-white">Đơn Hàng Của Tôi
-                            <a href="{{ url('orders') }}" class="btn btn-warning text-white float-end"> Trở Lại</a>
+                            <a href="{{ url()->previous() }}" class="btn btn-warning text-white float-end"> Trở Lại</a>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -75,12 +75,16 @@
                                             @if($orders->status == '0')
                                             <option {{ $orders->status == '0'? 'selected':'' }} value="0"> Chưa Xử Lý </option>
                                             @endif
+                                            
+                                            @if($orders->status == '3')
+                                            <option {{ $orders->status == '3'? 'selected':'' }} value="3"> Đã Thanh Toán </option>
+                                            @endif
 
                                             @if($orders->status != '2' && $orders->status != '-1')
                                             <option {{ $orders->status == '1'? 'selected':'' }} value="1"> Đang Giao Hàng </option>
                                             @endif
 
-                                            @if($orders->status != '0' && $orders->status != '-1')
+                                            @if($orders->status != '0' && $orders->status != '-1' && $orders->status != '3')
                                             <option {{ $orders->status == '2'? 'selected':'' }} value="2"> Đã Giao Hàng </option>
                                             @endif
 
