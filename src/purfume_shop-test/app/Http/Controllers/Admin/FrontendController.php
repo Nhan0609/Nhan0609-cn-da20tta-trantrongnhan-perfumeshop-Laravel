@@ -28,6 +28,7 @@ class FrontendController extends Controller
       $delivered = 0;
       $handing = 0;
       $delivering=0;
+      $done=0;
       $cancelorder=0;
 
       foreach ($orders as $order) {
@@ -43,11 +44,14 @@ class FrontendController extends Controller
                break;
             case 2: 
                $delivered++;
-               $totalPrice += $order->total_price;
                break;
+            case 3;
+               $done++;
+               $totalPrice += $order->total_price;
+            break;
          }
       }
         
-      return view('admin.index', compact('totalPrice', 'totalOrder', 'delivered', 'delivering', 'handing', 'cancelorder'));
+      return view('admin.index', compact('totalPrice', 'totalOrder', 'delivered', 'delivering', 'handing', 'cancelorder','done'));
    }
 }

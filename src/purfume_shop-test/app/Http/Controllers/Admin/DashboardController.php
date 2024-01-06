@@ -44,6 +44,7 @@ class DashboardController extends Controller
     // }
     public function search(Request $request)
     {
+        Order::all();
         $startDate = $request->input('dateA');
         $endDate = $request->input('dateB');
     
