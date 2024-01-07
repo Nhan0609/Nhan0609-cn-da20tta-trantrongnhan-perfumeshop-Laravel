@@ -135,8 +135,13 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('view-users/{id}', [DashboardController::class, 'viewuser']);
    //Hiển thị form tra cứu doanh thu
    Route::get('/revenue-form', [DashboardController::class, 'form']);
-   //Tra cứu doanh thu
-   Route::post('/revenue-search', [DashboardController::class, 'search'])->name('revenue-search');
-
+   //Tra cứu doanh thu theo ngày
+   Route::post('/revenue-search-day', [DashboardController::class, 'search_day'])->name('revenue-search-day');
+   //Tra cứu doanh thu theo tháng
+   Route::post('/revenue-search-month', [DashboardController::class, 'search_month'])->name('revenue-search-month');
+   //Tra cứu doanh thu theo quý
+   Route::post('/revenue-search-quarter', [DashboardController::class, 'search_quarter'])->name('revenue-search-quarter');
+   //Tra cứu doanh thu theo năm
+   Route::post('/revenue-search-year', [DashboardController::class, 'search_year'])->name('revenue-search-year');
 });
 

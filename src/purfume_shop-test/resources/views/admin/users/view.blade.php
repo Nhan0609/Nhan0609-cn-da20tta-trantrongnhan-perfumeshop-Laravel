@@ -64,10 +64,10 @@
                                 <div class="p-2 border">{{$users-> country }}</div>
                             </div>
 
-                            <div class="col-md-4 mt-3">
+                            {{-- <div class="col-md-4 mt-3">
                                 <label for=""> Mã Pin </label>
                                 <div class="p-2 border">{{$users-> pincode }}</div>
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>

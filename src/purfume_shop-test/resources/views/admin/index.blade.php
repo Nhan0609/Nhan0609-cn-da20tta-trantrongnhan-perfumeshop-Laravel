@@ -27,7 +27,7 @@
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-dark text-uppercase mb-1 ">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 ">
                                             Doanh thu
                                         </div>
                                     </div>
@@ -46,7 +46,7 @@
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 ">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1 ">
                                             Tổng số đơn hàng
                                         </div>
                                         
@@ -64,7 +64,7 @@
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                             Số Đơn Đã Thanh Toán
                                         </div>
                                     </div>
@@ -81,7 +81,7 @@
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                             Số Đơn Đã Giao
                                         </div>
                                     </div>
@@ -115,7 +115,7 @@
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                             Số đơn chờ xác nhận</div>
                                     </div>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800 mt-5 " style="font-size: 25px">
@@ -131,7 +131,7 @@
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
+                                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                             Số đơn hủy</div>
                                     </div>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800 mt-5 " style="font-size: 25px">
