@@ -1,6 +1,5 @@
 # Website bán nước hoa
 
-Mô tả ngắn về ứng dụng của bạn.
 
 ## Yêu Cầu Hệ Thống
 

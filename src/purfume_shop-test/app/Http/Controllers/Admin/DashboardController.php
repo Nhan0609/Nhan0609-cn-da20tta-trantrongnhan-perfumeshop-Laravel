@@ -37,11 +37,11 @@ class DashboardController extends Controller
         $endDate = $request->input('dateB');
 
         // Xử lý theo ngày
-        $startDate = $startDate ? Carbon::parse($startDate)->startOfDay() : null;
-        $endDate = $endDate ? Carbon::parse($endDate)->endOfDay() : null;
+        $startDateYmd = $startDate ? Carbon::parse($startDate)->startOfDay() : null;
+        $endDateYmd = $endDate ? Carbon::parse($endDate)->endOfDay() : null;
 
         // Xử lý logic tra cứu doanh thu ở đây
-        $revenueResults = Order::whereBetween('created_at', [$startDate, $endDate])
+        $revenueResults = Order::whereBetween('created_at', [$startDateYmd, $endDateYmd])
                             ->where('status', 3) // Chỉ lấy đơn hàng đã thanh toán
                             ->sum('total_price');
 
