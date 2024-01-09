@@ -22,7 +22,6 @@
                                     <th>Tracking Number</th>
                                     <th>Tổng Tiền</th>
                                     <th>Trạng Thái</th>
-                                    <th>Hình Thức Thanh Toán</th>
                                     <th>Xử Lý</th>
                                 </tr>
                             </thead>
@@ -44,15 +43,6 @@
                                                 Đã Giao Hàng
                                             @elseif ($item->status == '-1') 
                                                 Đã Hủy
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if ($item->message == 'COD') 
-                                                Thanh Toán Khi Nhận Hàng
-                                            @elseif ($item->message == 'VNP') 
-                                                Thanh Toán Qua Ví VNPay
-                                            @else 
-                                                Thanh Toán Khi Nhận Hàng
                                             @endif
                                         </td>
                                         <td>

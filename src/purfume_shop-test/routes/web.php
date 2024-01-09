@@ -52,7 +52,8 @@ Route::get('category/{cate_slug}/{prod_slug}',[FrontendController::class, 'produ
 Route::post('timkiem', [FrontendController::class, 'search']);
 //Hiển thị tất cả sản phẩm
 Route::get('allprod', [FrontendController::class, 'allprod']);
-
+//Bảng báo giá
+Route::get('quotation', [FrontendController::class,'quotation']);
 
 
 

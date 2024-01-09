@@ -79,6 +79,22 @@ class FrontendController extends Controller
         return view('frontend.products.allprod', compact('allProducts'));
     }
 
+//Hiển thị bảng báo giá
+public function quotation()
+{
+    // Lấy tất cả sản phẩm với thông tin danh mục (eager loading)
+    $products = Product::with('category')->select('name', 'qty', 'original_price', 'selling_price', 'image')->get();
+
+    // Lấy danh sách các danh mục
+    $categories = Category::all();
+
+    return view('frontend.products.quotation', compact('products', 'categories'));
+}
+
+
+
+
+
 //Tìm kiếm sản phẩm
     public function search(Request $request)
     {
@@ -100,17 +116,5 @@ class FrontendController extends Controller
         return view('interact.contact');
     }
 
-//     public function show($id)
-// {
-//     // Tìm sản phẩm
-//     $product = Product::find($id);
-
-//     // Tăng giá trị view_count
-//     $product->increment('view_count');
-
-
-//     // Trả về view
-//     return view('frontend.products.show', compact('product'));
-// }
 }
 

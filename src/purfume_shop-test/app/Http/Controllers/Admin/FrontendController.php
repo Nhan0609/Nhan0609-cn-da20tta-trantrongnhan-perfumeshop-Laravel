@@ -44,10 +44,11 @@ class FrontendController extends Controller
                break;
             case 2: 
                $delivered++;
+               $totalPrice += $order->total_price;
                break;
             case 3;
                $done++;
-               $totalPrice += $order->total_price;
+               
             break;
          }
       }

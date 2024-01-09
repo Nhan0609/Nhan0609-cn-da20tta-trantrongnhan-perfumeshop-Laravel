@@ -24,6 +24,7 @@
                 <div class="d-flex flex-column justify-content-start">
                     <a class="text-body mb-2" href="{{url('/')}}"><i class="bi bi-arrow-right text-primary me-2"></i>Trang Chủ</a>
                     <a class="text-body mb-2" href="{{url('/allprod')}}"><i class="bi bi-arrow-right text-primary me-2"></i>Sản Phẩm</a>
+                    <a class="text-body mb-2" href="{{url('/quotation')}}"><i class="bi bi-arrow-right text-primary me-2"></i>Bảng Báo Giá</a>
                     <a class="text-body mb-2" href="{{url('/views.interact.introduce')}}"><i class="bi bi-arrow-right text-primary me-2"></i>Giới Thiệu</a>
                     <a class="text-body mb-2" href="{{url('/views.interact.contact')}}"><i class="bi bi-arrow-right text-primary me-2"></i>Liên Hệ</a>
                 </div>

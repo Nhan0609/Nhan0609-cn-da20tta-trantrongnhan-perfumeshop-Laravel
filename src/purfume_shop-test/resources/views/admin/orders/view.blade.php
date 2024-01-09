@@ -35,8 +35,15 @@
                                 Tỉnh: {{ $orders->state }},
                                 Quốc Gia: {{ $orders->country }},
                                 </div>
-                                {{-- <label for="">Zip Code</label>
-                                <div class="border">{{ $orders->pincode }}</div> --}}
+                                <label for="">Hình Thức Đặt Hàng: </label>
+                                <div class="border">
+                                    @if ($orders->message == 'COD') 
+                                        Thanh Toán Khi Nhận Hàng
+                                    @elseif ($orders->message == 'VNP') 
+                                        Ví Điện Tử VNPay
+                                    @endif
+                                </div>
+                                
                             </div>
                             <div class="col-md-6">
                                 <h4>Chi Tiết Đơn Hàng</h4>
@@ -76,16 +83,18 @@
                                             <option {{ $orders->status == '0'? 'selected':'' }} value="0"> Chưa Xử Lý </option>
                                             @endif
                                             
-                                            @if($orders->status == '3')
+                                            @if($orders->status == '3' || ($orders->status == '1'  && $orders->message == 'COD'))
                                             <option {{ $orders->status == '3'? 'selected':'' }} value="3"> Đã Thanh Toán </option>
                                             @endif
 
-                                            @if($orders->status != '2' && $orders->status != '-1')
+                                            @if($orders->status == '0' || $orders->status == '1' || ($orders->status == '3' && $orders->message != 'COD'))
                                             <option {{ $orders->status == '1'? 'selected':'' }} value="1"> Đang Giao Hàng </option>
                                             @endif
 
-                                            @if($orders->status != '0' && $orders->status != '-1' && $orders->status != '3')
+                                            @if($orders->status == '2' || ($orders->status == '1'  && $orders->message != 'COD') 
+                                                                        || ($orders->status == '3' && $orders->message == 'COD'))
                                             <option {{ $orders->status == '2'? 'selected':'' }} value="2"> Đã Giao Hàng </option>
+                                            
                                             @endif
 
                                             @if($orders->status != '2')
@@ -96,6 +105,11 @@
                                         @if($orders->status != '2' && $orders->status != '-1')
                                         <button type="submit" class="btn btn-primary float-end mt-3"> Cập Nhật </button>
                                         @endif
+
+                                        @if($orders->status == '2' )
+                                            <a href="#" class="btn btn-primary float-end mt-3">In Hóa Đơn</a>
+                                        @endif
+
                                     </form>
                                 </div>
                             </div>

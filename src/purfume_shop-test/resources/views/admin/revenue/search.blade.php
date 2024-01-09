@@ -95,5 +95,7 @@
     <p>Ngày Kết Thúc: <b>{{ $endDate ? \Carbon\Carbon::parse($endDate)->format('d/m/Y') : 'Không xác định' }}</b></p>
 
     <p>Doanh Thu: <b>{{ number_format($revenueResults) }}</b> VNĐ</p>
+
+    
 </div>
 @endsection

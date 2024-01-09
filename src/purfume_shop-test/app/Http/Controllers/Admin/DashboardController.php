@@ -41,8 +41,8 @@ class DashboardController extends Controller
         $endDateYmd = $endDate ? Carbon::parse($endDate)->endOfDay() : null;
 
         // Xử lý logic tra cứu doanh thu ở đây
-        $revenueResults = Order::whereBetween('created_at', [$startDateYmd, $endDateYmd])
-                            ->where('status', 3) // Chỉ lấy đơn hàng đã thanh toán
+        $revenueResults = Order::whereBetween('created_at', [$startDateYmd, $endDate])
+                            ->where('status', 2) // Chỉ lấy đơn hàng đã giao hàng
                             ->sum('total_price');
 
         return view('admin.revenue.search', compact('revenueResults', 'startDate', 'endDate'));
@@ -64,7 +64,7 @@ class DashboardController extends Controller
         $endDate = Carbon::create($selectedYear, $selectedMonth, 1)->endOfMonth();
     
         $revenueResults = Order::whereBetween('created_at', [$startDate, $endDate])
-            ->where('status', 3) // Chỉ lấy đơn hàng đã thanh toán
+            ->where('status', 2) // Chỉ lấy đơn hàng đã giao hàng
             ->sum('total_price');
     
         return view('admin.revenue.search', compact('revenueResults', 'startDate', 'endDate', 'selectedMonth', 'selectedYear'));
@@ -104,7 +104,7 @@ class DashboardController extends Controller
 
         // Xử lý logic tra cứu doanh thu theo quý ở đây
         $revenueResults = Order::whereBetween('created_at', [$startDate, $endDate])
-                            ->where('status', 3) // Chỉ lấy đơn hàng đã thanh toán
+                            ->where('status', 2) // Chỉ lấy đơn hàng đã giao hàng
                             ->sum('total_price');
 
         return view('admin.revenue.search', compact('revenueResults', 'startDate', 'endDate'));
@@ -125,7 +125,7 @@ class DashboardController extends Controller
         $endDate = Carbon::create($selectedYear)->endOfYear();
 
         $revenueResults = Order::whereBetween('created_at', [$startDate, $endDate])
-            ->where('status', 3) // Chỉ lấy đơn hàng đã thanh toán
+            ->where('status', 2) // Chỉ lấy đơn hàng đã giao hàng
             ->sum('total_price');
 
         return view('admin.revenue.search', compact('revenueResults', 'startDate', 'endDate', 'selectedYear'));

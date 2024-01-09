@@ -10,7 +10,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::whereIn('status', ['0','3'])->get();
+        $orders = Order::where('status', '0')->orderBy('created_at', 'desc')->get();
         return view('admin.orders.index', compact('orders'));
     }
 
@@ -25,12 +25,12 @@ class OrderController extends Controller
         $orders = Order::find($id);
         $orders->status = $request->input('order_status');
         $orders->update();
-        return redirect('orders')->with('status', "Cập Nhật Trạng Thái Đơn Hàng Thành Công");
+        return redirect('order-history')->with('status', "Cập Nhật Trạng Thái Đơn Hàng Thành Công");
     }
 
     public function orderhistory()
     {
-        $orders = Order::whereNotIn('status', ['0','3'])->get();
+        $orders = Order::where('status', '<>', '0')->orderBy('created_at', 'desc')->get();
         return view('admin.orders.history', compact('orders'));
     }
 }
