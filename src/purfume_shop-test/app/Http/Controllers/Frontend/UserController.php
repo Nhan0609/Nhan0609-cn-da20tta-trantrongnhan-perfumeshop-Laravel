@@ -29,7 +29,11 @@ class UserController extends Controller
         $users = User::all(); // Lấy tất cả thông tin từ bảng users
         return view('interact.infor', ['users' => $users]);
     }
-
+    //Thay đổi mật khẩu
+    public function change_password()
+    {
+        return view('auth.passwords.change');
+    }
 }
 
     

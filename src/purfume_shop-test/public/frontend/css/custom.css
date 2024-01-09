@@ -275,3 +275,8 @@ transition: .3s ease all;
 } 
 
 .pass_show .ptxt:hover{color: #333333;} 
+
+/* Chữ của thanh menu*/
+.small-text {
+    font-size: 14px;
+}

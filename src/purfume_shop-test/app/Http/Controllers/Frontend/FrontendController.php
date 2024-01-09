@@ -83,10 +83,11 @@ class FrontendController extends Controller
 public function quotation()
 {
     // Lấy tất cả sản phẩm với thông tin danh mục (eager loading)
-    $products = Product::with('category')->select('name', 'qty', 'original_price', 'selling_price', 'image')->get();
+    // $products = Product::with('category')->select('name', 'qty', 'original_price', 'selling_price', 'image')->get();
+    $products = Product::all();
 
     // Lấy danh sách các danh mục
-    $categories = Category::all();
+    $categories = Category::select('slug')->get();
 
     return view('frontend.products.quotation', compact('products', 'categories'));
 }

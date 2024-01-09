@@ -205,7 +205,7 @@ $(document).ready(function () {
     }
 
 });
-
+//Mật khẩu
 $(document).ready(function () {
     $('.pass_show').append('<span class="ptxt">👁</span>');
 });
@@ -214,3 +214,15 @@ $(document).on('click', '.pass_show .ptxt', function () {
     $(this).text($(this).text() == "👁" ? "👁️‍🗨️" : "👁");
     $(this).prev().attr('type', function (index, attr) { return attr == 'password' ? 'text' : 'password'; });
 });  
+//Thay đổi mật khẩu
+// document.getElementById('savePasswordBtn').addEventListener('click', function() {
+//     // Lấy giá trị mật khẩu hiện tại, mật khẩu mới và xác nhận mật khẩu mới từ các trường input
+//     var currentPassword = document.querySelector('#exampleModal input[placeholder="Nhập mật khẩu hiện tại"]').value;
+//     var newPassword = document.querySelector('#exampleModal input[placeholder="Nhập mật khẩu mới"]').value;
+//     var confirmPassword = document.querySelector('#exampleModal input[placeholder="Xác nhận mật khẩu mới"]').value;
+
+//     // Thực hiện xử lý tại đây (có thể sử dụng Ajax để gửi dữ liệu đến server)
+
+//     // Sau khi xử lý, đóng modal
+//     $('#exampleModal').modal('hide');
+// });

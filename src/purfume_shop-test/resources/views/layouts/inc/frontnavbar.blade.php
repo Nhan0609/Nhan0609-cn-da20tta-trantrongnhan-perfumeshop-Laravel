@@ -34,14 +34,16 @@
 </div>
 {{-- End Topbar --}}
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light small-text">
   {{-- <div class="container"> --}}
-    <a style="padding: 15px" class="navbar-brand" href="{{ url('/dashboard') }}"><img  src="{{asset('assets/images/logo.gif')}}" alt="Logo đầu trang"/></a>
+    <a style="padding: 15px" class="navbar-brand" href="{{ url('/dashboard') }}"><img src="{{asset('assets/images/logo.gif')}}" alt="Logo đầu trang"/></a>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav ms-auto">
+
+    <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto ">
         
         <form action="{{url('timkiem')}}" method="POST">
           @csrf
@@ -67,6 +69,7 @@
       </ul> --}}
       <a class="nav-link" href="{{ url('allprod')}}">Sản phẩm</a>
       
+      <a class="nav-link" href="{{ url('quotation')}}">Bảng Báo Giá</a>
 
         <a class="nav-link" href="{{ url('my-orders' )}}">Đơn Hàng</a>
 

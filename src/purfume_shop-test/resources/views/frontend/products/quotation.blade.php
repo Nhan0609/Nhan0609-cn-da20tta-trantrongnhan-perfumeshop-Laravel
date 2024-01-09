@@ -16,7 +16,7 @@
                 <tr>
                     <th>Hình Ảnh</th>
                     <th>Tên Sản Phẩm</th>
-                    {{-- <th>Danh Mục</th> --}}
+                    <th>Danh Mục</th>
                     <th>Giá Gốc</th>
                     <th>Giá Giảm</th>  
                     <th>Số Lượng</th>
@@ -26,12 +26,14 @@
                 @foreach($products as $item)
                     <tr>
                         <td>
+                            <a href="{{ url('category/'.$item->category->slug.'/'.$item->slug) }}">
                             <img src="{{ asset('assets/uploads/products/'.$item->image) }}" alt="Ảnh Sản Phẩm" style="width: 100px; height: 100px;">
+                            </a>
                         </td>
                         <td>{{ $item->name }}</td>
-                        {{-- <td>{{ optional($item->category)->name }}</td> --}}
+                        <td>{{ optional($item->category)->name }}</td>
                         <td><span><s>{{ number_format($item->original_price) }} VNĐ</s></span></td>
-                        <td>{{ number_format($item->selling_price) }} VNĐ</td>
+                        <td><b> {{ number_format($item->selling_price) }} VNĐ </b></td>
                        
                         @if( $item->qty == 0)
                             <td>Hết Hàng</td>

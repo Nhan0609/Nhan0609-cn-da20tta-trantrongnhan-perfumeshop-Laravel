@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\WishlistController;
+use Illuminate\Auth\Notifications\ResetPassword;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,8 @@ use App\Http\Controllers\Frontend\WishlistController;
 Route::get('/views.interact.introduce', [FrontendController::class, 'viewintroduce']);
 //Liên hệ
 Route::get('/views.interact.contact', [FrontendController::class, 'viewcontact']);
-
+//Đổi mật khẩu
+Route::get('/change_password', [UserController::class, 'change_password']);
 
 //Frontend
 //Trang chủ

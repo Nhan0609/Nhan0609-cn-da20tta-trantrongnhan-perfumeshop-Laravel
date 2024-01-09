@@ -19,9 +19,10 @@
                     <hr>
                 </div>
                 <div class="card-body">
-                    <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    {{-- <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Thay đổi mật khẩu
-                    </button>
+                    </button> --}}
+                    <a class="btn btn-primary btn-sm" href="{{url('/change_password')}}">Thay Đổi Mật Khẩu</a>
                     <div class="row mt-3">
                         <div class="col-md-4">
                             <label for=""> Vai Trò </label>
@@ -85,7 +86,7 @@
     </div>
 
     <!-- Modal change password -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -119,7 +120,7 @@
         </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 @include('layouts.inc.footer')
 @endsection
