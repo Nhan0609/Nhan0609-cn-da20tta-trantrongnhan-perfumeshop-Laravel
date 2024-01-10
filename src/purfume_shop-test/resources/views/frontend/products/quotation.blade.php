@@ -11,7 +11,7 @@
         <hr>
     </div>
     <div class="card-body">
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped text-center">
             <thead>
                 <tr>
                     <th>Hình Ảnh</th>
@@ -20,6 +20,7 @@
                     <th>Giá Gốc</th>
                     <th>Giá Giảm</th>  
                     <th>Số Lượng</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -39,7 +40,8 @@
                             <td>Hết Hàng</td>
                         @else
                             <td>Còn {{ $item->qty }} Sản Phẩm</td>
-                        @endif    
+                        @endif 
+                        <td><a class="btn btn-primary btn-sm" href="{{ url('category/'.$item->category->slug.'/'.$item->slug) }}">Xem Sản Phẩm</a></td>   
                     </tr>
                 @endforeach
             </tbody>

@@ -21,7 +21,7 @@ class CartController extends Controller
         if($prod_check)
         {
             if ($product_qty == null || $product_qty == 0) {
-                return response()->json(['status' => "Không thể thêm do số lượng của sản phẩm ". $prod_check->name. " vượt quá số lượng hiện có."]);
+                return response()->json(['status' => "Không Thể Thêm Do Số Lượng Của Sản Phẩm ". $prod_check->name. " Trong Kho Đã Hết."]);
             }
 
             if(Auth::check())
