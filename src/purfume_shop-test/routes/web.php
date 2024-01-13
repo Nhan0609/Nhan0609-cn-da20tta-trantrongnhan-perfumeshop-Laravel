@@ -11,8 +11,10 @@ use App\Http\Controllers\Admin\FrontendController as AdminFrontendController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\SendMailController as FrontendSendMailController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\WishlistController;
+use App\Http\Controllers\SendMailController;
 use Illuminate\Auth\Notifications\ResetPassword;
 
 /*
@@ -38,6 +40,8 @@ Route::get('/views.interact.introduce', [FrontendController::class, 'viewintrodu
 Route::get('/views.interact.contact', [FrontendController::class, 'viewcontact']);
 //Đổi mật khẩu
 Route::get('/change_password', [UserController::class, 'change_password']);
+//Gửi mail đơn đặt hàng
+Route::get('sendmail-bill', [FrontendSendMailController::class, 'sendmail_bill']);
 
 //Frontend
 //Trang chủ

@@ -186,6 +186,7 @@ class CheckoutController extends Controller
         $order->message = isset($_SESSION['payment_type']) ? $_SESSION['payment_type'] : null;
         $order->tracking_no = $transaction_no;   //Kết thúc tính tổng tiền sau khi đặt hàng
         $order->save();
+        $_SESSION['order_id'] = $order->id;
 
         // Xử lý sản phẩm theo đơn hàng
         foreach($cartitems as $item)
@@ -231,6 +232,11 @@ class CheckoutController extends Controller
                 unset($_SESSION['card']);
             }
 
+            // Gửi mail hóa đơn
+            $sendMail = new SendMailController();
+            $sendMail->sendmail_bill($_SESSION['order_id']);
+            unset($_SESSION['order_id']);
+
             return redirect('/home')-> with('status', $message);
         }
 
@@ -238,6 +244,7 @@ class CheckoutController extends Controller
         unset($_SESSION['request_user']);
         unset($_SESSION['total']);
         unset($_SESSION['payment_type']);
+        unset($_SESSION['order_id']);
         return redirect('/checkout');
     }
 
