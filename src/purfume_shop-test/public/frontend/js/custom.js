@@ -41,6 +41,11 @@ $(document).ready(function () {
         var product_id = $(this).closest('.product_data').find('.prod_id').val();
         var product_qty = $(this).closest('.product_data').find('.qty-input').val();
 
+        if (product_qty <= 0) {
+            swal('Số lượng phải lớn hơn 0. Vui lòng nhập lại số lượng.');
+            return;
+        }
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

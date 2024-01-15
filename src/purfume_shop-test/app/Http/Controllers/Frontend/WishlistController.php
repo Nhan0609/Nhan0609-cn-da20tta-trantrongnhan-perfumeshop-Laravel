@@ -23,6 +23,10 @@ class WishlistController extends Controller
             $prod_id = $request-> input('product_id');
             if(Product::find($prod_id))
             {
+                if (Wishlist::where('user_id', Auth::id())->where('prod_id', $prod_id)->count() > 0) {
+                    return response()->json(['status'=> "Sản Phẩm Đã Được Thêm Vào Danh Sách Yêu Thích"]);
+                }
+
                 $wish = new Wishlist();
                 $wish-> prod_id = $prod_id;
                 $wish-> user_id = Auth::id();
