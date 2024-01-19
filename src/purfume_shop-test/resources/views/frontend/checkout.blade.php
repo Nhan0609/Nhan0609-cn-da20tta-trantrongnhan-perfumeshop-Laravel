@@ -92,7 +92,7 @@
                             <div class="row checkout-form">
                                 <div class="col-md-6">
                                     <label for="">Họ</label>
-                                    <input type="text" class="form-control" value="" name="fname" placeholder="Nhập Họ">
+                                    <input type="text" class="form-control" value="" name="name" placeholder="Nhập Họ">
                                 </div>
 
                                 <div class="col-md-6">

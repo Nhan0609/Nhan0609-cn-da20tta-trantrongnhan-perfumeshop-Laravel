@@ -124,20 +124,19 @@ class CheckoutController extends Controller
             $cartitems = Cart::where('user_id', Auth::id())->get();
 
             // Cập nhập thông tin user
-            if (Auth::user()->address1 == NULL)
-            {
-                $user = User::where('id', Auth::id())->first();
+            $user_update = User::where('id', Auth::id())->first();
 
-                $user->name = $user->lname;
-                $user->phone = $user->phone;
-                $user->address1 = $user->address1;
-                $user->address2 = $user->address2;
-                $user->city = $user->city;
-                $user->state = $user->state;
-                $user->country = $user->country;
-                $user->pincode = $user->pincode;
-                $user-> update();
-            }
+            $user_update->name = $user->lname;
+            $user_update->phone = $user->phone;
+            $user_update->address1 = $user->address1;
+            $user_update->address2 = $user->address2;
+            $user_update->city = $user->city;
+            $user_update->state = $user->state;
+            $user_update->country = $user->country;
+            $user_update->pincode = $user->pincode;
+            $user_update-> update();
+
+            $user = $user_update;
 
             $message = "Đặt Hàng Thành Công";
         } else {
